@@ -24,7 +24,7 @@ jobs:
         run: |
           git config user.name "bist-bot"
           git config user.email "bist-bot@users.noreply.github.com"
-          git add gecmis/gecmis-veri.txt.gz
+          git add gecmis/gecmis-veri.txt.gz gecmis/makro.txt.gz
           git commit -m "Gecmis veri $(date -u +%F)" || echo "degisiklik yok"
           git pull --rebase
           git push
