@@ -26,7 +26,7 @@ jobs:
         run: |
           git config user.name "bist-bot"
           git config user.email "bist-bot@users.noreply.github.com"
-          git add bist-veri.txt
+          git add bist-veri.txt makro-gunluk.txt
           git commit -m "Piyasa verisi $(date -u +%F)" || echo "degisiklik yok"
           git pull --rebase
           git push
