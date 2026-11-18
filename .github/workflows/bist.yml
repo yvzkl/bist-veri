@@ -1,11 +1,11 @@
-# Yatırım Ajanı — BIST günlük veri
+# Yatırım Ajanı — günlük piyasa verisi (BIST 100 + 30 ABD hissesi + 15 kripto)
 # Bu dosyanın repodaki yeri: .github/workflows/bist.yml
-name: BIST verisi
+name: Piyasa verisi
 
 on:
   schedule:
     - cron: "5 16 * * 1-5"   # Pzt–Cum 16:05 UTC = 19:05 İstanbul (BIST kapanışından sonra)
-    - cron: "5 3 * * 2-6"    # Sal–Cmt 06:05 İstanbul, sabah yedeği
+    - cron: "5 3 * * *"      # Her gün 03:05 UTC = 06:05 İstanbul: ABD ve kripto dahil tüm kapanmış günler
   workflow_dispatch:          # Actions sekmesinden elle çalıştırmak için
 
 permissions:
@@ -14,18 +14,19 @@ permissions:
 jobs:
   cek:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install yfinance
+      - run: pip install --upgrade yfinance
       - run: python3 bist_cek.py bist-veri.txt
       - name: Kaydet
         run: |
           git config user.name "bist-bot"
           git config user.email "bist-bot@users.noreply.github.com"
           git add bist-veri.txt
-          git commit -m "BIST verisi $(date -u +%F)" || echo "degisiklik yok"
+          git commit -m "Piyasa verisi $(date -u +%F)" || echo "degisiklik yok"
           git pull --rebase
           git push
