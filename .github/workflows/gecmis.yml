@@ -1,0 +1,30 @@
+# Yatırım Ajanı — eğitim için geçmiş veri (2015'ten bugüne, düzeltilmiş fiyatlar)
+name: Gecmis veri
+
+on:
+  schedule:
+    - cron: "17 4 1 * *"   # her ayın 1'i 04:17 UTC
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  cek:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --upgrade yfinance
+      - run: mkdir -p gecmis && python3 gecmis_cek.py gecmis/gecmis-veri.txt.gz
+      - name: Kaydet
+        run: |
+          git config user.name "bist-bot"
+          git config user.email "bist-bot@users.noreply.github.com"
+          git add gecmis/gecmis-veri.txt.gz
+          git commit -m "Gecmis veri $(date -u +%F)" || echo "degisiklik yok"
+          git pull --rebase
+          git push
