@@ -1,7 +1,10 @@
 #!/usr/bin/env python3
-# Piyasa günlük veri çekici v3 — Yatırım Ajanı için
+# Piyasa günlük veri çekici v4 — Yatırım Ajanı için
 # Havuz: BIST 100 (1 Ekim–31 Aralık 2026 dönemi) + 30 ABD hissesi + 15 kripto.
 # Kaynak: Yahoo Finance (yfinance), günlük OHLCV; motor.py'nin okuduğu veri.txt biçiminde yazar.
+# v4: fiyatlar bölünme VE temettüye göre düzeltilmiştir (auto_adjust=True; geçmiş veriyle aynı politika), 1 yıllık;
+#     ayrıca piyasa göstergeleri (BIST 100 endeksi, SPY, QQQ, VIX, USD/TRY, altın, BTC) 2 yıllık olarak
+#     makro-gunluk.txt dosyasına her gün yazılır (aday sinyallerin canlı takibi için).
 #
 # Yalnızca KAPANMIŞ günlerin çubukları yazılır (yarım gün çubuğu dosyaya hiç girmez):
 #   BIST  : İstanbul saatiyle 18:30'dan sonra o gün kapanmış sayılır
@@ -71,7 +74,7 @@ def indir(semboller, **kw):
         df = None
         for deneme in range(3):
             try:
-                df = yf.download(parti, group_by="ticker", auto_adjust=False, actions=False,
+                df = yf.download(parti, group_by="ticker", auto_adjust=True, actions=False,
                                  threads=True, progress=False, **kw)
                 break
             except Exception as e:  # ağ / hız sınırı
@@ -133,7 +136,7 @@ def main():
 
     # BIST: günlük + eksik kapanmış günler için saatlik
     yb = [k + ".IS" for k in BIST]
-    GD = indir(yb, period="6mo", interval="1d")
+    GD = indir(yb, period="1y", interval="1d")
     SD = indir(yb, period="5d", interval="1h")
     for kod in BIST:
         G = gunluk(GD.get(kod + ".IS"))
@@ -145,7 +148,7 @@ def main():
         (bloklar.append(b) if b else hatalar.append("BIST_" + kod))
 
     # ABD
-    GD = indir(US, period="6mo", interval="1d")
+    GD = indir(US, period="1y", interval="1d")
     for kod in US:
         G = gunluk(GD.get(kod))
         b = blok("US_" + kod, G, K["US"]) if G else None
@@ -153,7 +156,7 @@ def main():
 
     # Kripto (sembol adayları)
     adaylar = sorted({s for _, L in KR for s in L})
-    GD = indir(adaylar, period="6mo", interval="1d")
+    GD = indir(adaylar, period="1y", interval="1d")
     for anahtar, L in KR:
         b = None
         for s in L:
@@ -173,11 +176,39 @@ def main():
 
     damga = simdi.strftime("%Y-%m-%d %H:%M UTC")
     # Bu üst satırlar motor tarafından yok sayılır (ilk '#' başlığından önce geliyor).
-    ust = ["olusturma;" + damga, "hata;" + ",".join(hatalar), "doldurulan;" + ",".join(doldurulan),
+    ust = ["olusturma;" + damga, "yfinance;" + getattr(yf, "__version__", "?"), "hata;" + ",".join(hatalar),
+           "doldurulan;" + ",".join(doldurulan),
            "kesim;" + ",".join("%s=%s" % (m, K[m]) for m in ("BIST", "US", "KR"))]
     with open(cikti, "w") as f:
         f.write("\n".join(ust + bloklar) + "\n")
     print("Yazildi:", cikti)
+    makro(cikti, simdi, K)
+
+
+# Piyasa göstergeleri: ad, Yahoo sembolü, kapanmış gün kesimi (hangi piyasanın saatine göre)
+MAKRO = [("XU100", "XU100.IS", "BIST"), ("SPY", "SPY", "US"), ("QQQ", "QQQ", "US"), ("VIX", "^VIX", "US"),
+         ("USDTRY", "USDTRY=X", "KR"), ("ALTIN", "GC=F", "US"), ("BTC", "BTC-USD", "KR")]
+
+
+def makro(cikti, simdi, K):
+    import os
+    MD = indir([s for _, s, _ in MAKRO], period="2y", interval="1d")
+    ms, hata = [], []
+    for ad, s, m in MAKRO:
+        G = gunluk(MD.get(s))
+        gun = sorted(d for d in G if d <= K[m])
+        if not gun:
+            hata.append(ad)
+            continue
+        ms += ["#MAKRO_" + ad, "datetime;open;high;low;close;volume"]
+        ms += [";".join([d, sayi(G[d][0]), sayi(G[d][1]), sayi(G[d][2]), sayi(G[d][3]), str(G[d][4])]) for d in gun]
+    yol = os.path.join(os.path.dirname(os.path.abspath(cikti)), "makro-gunluk.txt")
+    if len(hata) > 3:
+        print("MAKRO YETERSIZ, dosya yazilmadi:", ",".join(hata))
+        return
+    with open(yol, "w") as f:
+        f.write("\n".join(["olusturma;" + simdi.strftime("%Y-%m-%d %H:%M UTC"), "hata;" + ",".join(hata)] + ms) + "\n")
+    print("Yazildi:", yol, "| makro hata:", ",".join(hata) or "-")
 
 
 if __name__ == "__main__":
