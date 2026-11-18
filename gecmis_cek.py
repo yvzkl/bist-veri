@@ -4,6 +4,7 @@
 # Fiyatlar bölünme ve temettüye göre düzeltilmiştir (auto_adjust=True); yalnızca kapanmış günler yazılır.
 # Çıktı motor.py'nin okuduğu biçimdedir, gzip ile sıkıştırılır: gecmis/gecmis-veri.txt.gz
 # Kullanım: python3 gecmis_cek.py [cikti.txt.gz] [baslangic=2015-01-01]
+import os
 import sys
 import gzip
 import time
@@ -76,6 +77,23 @@ def main():
     with gzip.open(cikti, "wt") as f:
         f.write("\n".join(ust + satirlar) + "\n")
     print("Yazildi:", cikti)
+    # Piyasa göstergeleri (araştırma için; motor havuzuna girmez): ayrı dosya
+    MAKRO = [("XU100", "XU100.IS"), ("SPY", "SPY"), ("QQQ", "QQQ"), ("VIX", "^VIX"), ("USDTRY", "USDTRY=X"),
+             ("ALTIN", "GC=F"), ("BTC", "BTC-USD")]
+    MD = indir([s for _, s in MAKRO])
+    ms = []
+    for ad, s in MAKRO:
+        G = gunluk(MD.get(s))
+        if not G:
+            print("makro hata:", ad)
+            continue
+        ms += ["#MAKRO_" + ad, "datetime;open;high;low;close;volume"]
+        ms += [";".join([d, sayi(G[d][0]), sayi(G[d][1]), sayi(G[d][2]), sayi(G[d][3]), str(G[d][4])])
+               for d in sorted(G) if d < simdi.date().isoformat()]
+    mcikti = os.path.join(os.path.dirname(cikti), "makro.txt.gz")
+    with gzip.open(mcikti, "wt") as f:
+        f.write("\n".join(["olusturma;" + simdi.strftime("%Y-%m-%d %H:%M UTC")] + ms) + "\n")
+    print("Yazildi:", mcikti)
 
 
 if __name__ == "__main__":
