@@ -1,4 +1,4 @@
-olusturma;2026-11-17 23:28 UTC
+olusturma;2026-11-18 06:26 UTC
 hata;
 #BIST_THYAO
 datetime;open;high;low;close;volume
