@@ -4,9 +4,19 @@ name: Piyasa verisi
 
 on:
   schedule:
-    - cron: "5 16 * * 1-5"   # Pzt–Cum 16:05 UTC = 19:05 İstanbul (BIST kapanışından sonra)
-    - cron: "5 3 * * *"      # Her gün 03:05 UTC = 06:05 İstanbul: ABD ve kripto dahil tüm kapanmış günler
+    # GitHub zamanlanmış işleri yoğun saatlerde saatlerce geciktirebiliyor (18-19.11.2026'da 7-8,5 saat).
+    # Bu yüzden saat başı olmayan dakikalarda birden çok deneme var; amaç, sabah raporundan (05:37 UTC) önce
+    # en az birinin bitmesi. Aynı anda iki çalışma olmaz (concurrency); veri değişmediyse kayıt yapılmaz.
+    - cron: "17 16 * * 1-5"  # Pzt–Cum 19:17 İstanbul (BIST kapanışından sonra)
+    - cron: "43 18 * * 1-5"  # Pzt–Cum 21:43 İstanbul (yedek)
+    - cron: "23 0 * * *"     # Her gün 03:23 İstanbul: ABD ve kripto dahil tüm kapanmış günler
+    - cron: "41 1 * * *"     # Her gün 04:41 İstanbul (yedek)
+    - cron: "11 3 * * *"     # Her gün 06:11 İstanbul (yedek)
   workflow_dispatch:          # Actions sekmesinden elle çalıştırmak için
+
+concurrency:
+  group: piyasa-verisi
+  cancel-in-progress: false
 
 permissions:
   contents: write
