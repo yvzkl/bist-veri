@@ -9,7 +9,7 @@ on:
     paths: ["temel/**", ".github/workflows/temel.yml"]
 
 permissions:
-  contents: read
+  contents: write
 
 jobs:
   tara:
@@ -22,6 +22,12 @@ jobs:
           python-version: "3.12"
       - run: pip install --upgrade "yfinance>=1.8,<2" pandas
       - run: python3 temel/temel_tarama.py "$(cat temel/mod.txt)" cikti
+      - name: Sonucu bu dala yaz (ana dala degil)
+        if: github.ref == 'refs/heads/temel-tarama'
+        run: |
+          git config user.name "bist-bot"
+          git config user.email "bist-bot@users.noreply.github.com"
+          if [ -f sonuc/temel-tarama.json ]; then git add sonuc/temel-tarama.json && git commit -m "Temel tarama sonucu $(date -u +%F)" && git push; fi
       - uses: actions/upload-artifact@v4
         if: always()
         with:
