@@ -394,7 +394,7 @@ def evds_test(klasor):
     print("anahtar tanimli:", bool(anahtar), "| uzunluk:", len(anahtar), flush=True)
     bugun = dt.date.today()
     bas, son = (bugun - dt.timedelta(days=500)).strftime("%d-%m-%Y"), bugun.strftime("%d-%m-%Y")
-    for seri in ("TP.DK.USD.A.YTL", "TP.FG.J0"):
+    for seri in ("TP.DK.USD.A.YTL", "TP.FG.J0", "TP.TUKFIY2025.GENEL"):
         kod, govde, eski = evds_cek([seri], bas, son, anahtar)
         alan = seri.replace(".", "_")
         try:
