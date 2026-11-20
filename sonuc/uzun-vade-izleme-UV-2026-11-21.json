@@ -1,0 +1,1715 @@
+{
+ "kayit_id": "UV-2026-11-21",
+ "kayit_fiyati_tarihi": "2026-11-20",
+ "guncelleme": "2026-11-20 21:30 UTC",
+ "son_gun": "2026-11-20",
+ "sepet": {
+  "A_claude": {
+   "n": 10,
+   "eksik": 0,
+   "esit_agirlik": 0.0,
+   "medyan": 0.0,
+   "kat3_ustu": 0,
+   "yari_kayip": 0
+  },
+  "B_sistematik": {
+   "n": 20,
+   "eksik": 0,
+   "esit_agirlik": 0.0,
+   "medyan": 0.0,
+   "kat3_ustu": 0,
+   "yari_kayip": 0
+  },
+  "C_ekran_evreni": {
+   "n": 331,
+   "eksik": 0,
+   "esit_agirlik": 0.0,
+   "medyan": 0.0,
+   "kat3_ustu": 0,
+   "yari_kayip": 0
+  }
+ },
+ "kiyas": {
+  "IWM": 0.0,
+  "RSP": 0.0,
+  "SPY": 0.0,
+  "QQQ": 0.0
+ },
+ "getiri": {
+  "AAMI": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AAUC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ABUS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AD": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ADC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ADEA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ADPT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AFRM": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AG": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AGI": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AII": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AIP": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ALAB": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ALGM": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ALKS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ALKT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ALNY": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AMBA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AMPL": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ANGX": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ANIP": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "APPF": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "APPN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "APPS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AR": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ARIS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ARLO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ARQT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ASC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ASM": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ASND": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ATAT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ATEC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AU": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AUGO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AUPH": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AVPT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AXGN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AXON": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AXTI": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "AYA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "BCRX": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "BILL": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "BLLN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "BLSH": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "BLZE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "BRO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "BRZE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "BTG": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "BVN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CALX": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CALY": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CARG": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CDE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CDNA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CDRE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CELH": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CF": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CGNX": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CHRD": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CHYM": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CIEN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CLBT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "COHU": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CORT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "COUR": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CPAY": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CR": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CRDO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CRGY": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CRMD": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CRML": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CRON": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CSGP": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CTO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CURB": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CWEN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "CXT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "DAVE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "DCTH": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "DGII": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "DJT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "DKNG": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "DOCN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "DRD": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "DRVN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "DT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "DUOL": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "EDU": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ELF": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "EPRT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "EQT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "EQX": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ERO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ESE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ESTC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ETON": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "EVER": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "EVLV": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "EVTC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "EXE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "EXK": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "FA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "FCFS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "FDUS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "FENC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "FICO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "FIG": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "FIGS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "FIP": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "FLOC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "FLYW": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "FORM": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "FRO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "FROG": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "FRSH": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "FSLY": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "FSM": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "GAB": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "GEN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "GFI": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "GKOS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "GLBE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "GLNG": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "GPN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "GRND": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "GSHD": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "GTLB": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "GWRE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "HALO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "HAS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "HBM": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "HEI-A": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "HIMS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "HIPO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "HL": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "HLIT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "HLNE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "HMY": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "HNGE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "HNI": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "HOS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "HRMY": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "HSHP": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "HUBS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "IA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "IAG": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "IHS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "IMAX": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "INCY": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "INNV": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "INOD": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "INSW": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "IOT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "IRS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "IRTC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "IRWD": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "IWM": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "IX": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "JXN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "KGC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "KIDS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "KLIC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "KN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "KNSA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "KNTK": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "KRP": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "KRYS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "KTB": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "KVYO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "KYIV": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "LB": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "LFTO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "LFUS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "LIF": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "LIFE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "LINC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "LIND": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "LION": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "LKFT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "LMND": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "LOAR": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "LPG": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "LQDA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "LSCC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "LTC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "LUXE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MCHP": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MDB": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MEDP": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MGTX": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MGY": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MHD": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MIR": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MIRM": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MKSI": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MNDY": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MNR": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MNTN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MQ": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MQY": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MSGE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MTA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MTSI": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MUA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MUC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "MYN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "NAT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "NAVN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "NBIX": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "NMAX": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "NMRK": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "NP": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "NRIX": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "NTRA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "NTSK": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "NTST": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "NVMI": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "NXST": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "OABI": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "OGC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "OMDA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ONON": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ONTO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "OOMA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "OPRA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "OTF": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "PAAS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "PAR": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "PAYS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "PCOR": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "PCQ": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "PEN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "PICS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "PINS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "PL": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "PML": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "PODD": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "PPLI": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "PR": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "PRCH": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "PSTL": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "PTRN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "Q": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "QQQ": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "RBC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "RBRK": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "RDDT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "RDN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "REAL": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "RELY": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "REPX": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "RGLD": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "RKT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "RMBS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "RPAY": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "RRC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "RSKD": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "RSP": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "S": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SAIL": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SB": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SBRA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SCZM": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SEZL": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SGI": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SHAZ": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SHOO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SLAB": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SLDE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SLG": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SM": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SMTC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SNDK": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SPHR": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SPY": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SQM": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SSRM": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "STAA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "STC": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "STNG": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SUI": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "SUPN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TAL": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TARS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TEAM": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TECK": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TEM": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TER": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TFX": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TGTX": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TIGO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TK": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TKO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TLN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TLS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TMDX": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TNK": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TPL": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TREE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TRIN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TRMD": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TRNO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TTAN": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "TWLO": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "U": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "UPST": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "VCEL": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "VCTR": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "VCYT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "VET": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "VIAV": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "VICR": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "VIST": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "VMD": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "VNOM": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "VRNS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "VST": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "WAY": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "WES": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "WK": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "WSE": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "WT": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "WTS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "XERS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "YOU": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "Z": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ZBRA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ZETA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ZG": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ZS": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  },
+  "ZVRA": {
+   "getiri": 0.0,
+   "son_tarih": "2026-11-20",
+   "kaynak": "yahoo"
+  }
+ }
+}

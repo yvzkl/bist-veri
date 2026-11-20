@@ -1,0 +1,60 @@
+# Yatırım Ajanı — uzun vadeli aday taraması ve kayıtlı sepetlerin izlenmesi (temel veriler ve fiyatlar Yahoo'dan).
+# temel-tarama dalına itme: temel/mod.txt'deki modu çalıştırır, sonucu YALNIZCA o dala yazar.
+# Ana dalda: her ayın 20'sinde (ABD kapanışından sonra) "izle" modu kayıtlı sepetlerin getirisini
+# sonuc/uzun-vade-izleme-*.json dosyasına yazar. Elle çalıştırma varsayılanı da "izle"dir.
+name: Temel tarama
+
+on:
+  workflow_dispatch:
+    inputs:
+      mod:
+        description: "kesif | tarama | derin | izle"
+        default: "izle"
+  schedule:
+    - cron: "17 23 20 * *"
+  push:
+    branches: [temel-tarama]
+    paths: ["temel/**", ".github/workflows/temel.yml"]
+
+permissions:
+  contents: write
+
+concurrency:
+  group: temel-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  tara:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --upgrade "yfinance>=1.8,<2" pandas
+      - name: Calistir
+        env:
+          GIRDI_MOD: ${{ github.event.inputs.mod }}
+        run: |
+          if [ "$GITHUB_EVENT_NAME" = "push" ]; then MOD="$(cat temel/mod.txt)"
+          elif [ "$GITHUB_EVENT_NAME" = "schedule" ]; then MOD=izle
+          else MOD="${GIRDI_MOD:-izle}"; fi
+          echo "mod: $MOD"
+          python3 temel/temel_tarama.py "$MOD" cikti
+      - name: Sonucu yaz (dal) ya da izleme dosyasini yaz (ana dal)
+        run: |
+          git config user.name "bist-bot"
+          git config user.email "bist-bot@users.noreply.github.com"
+          if [ "$GITHUB_REF_NAME" = "temel-tarama" ]; then git add sonuc/*.json 2>/dev/null || true
+          else git add sonuc/uzun-vade-izleme-*.json 2>/dev/null || true; fi
+          if git diff --cached --quiet; then echo "yazilacak degisiklik yok"; exit 0; fi
+          git commit -q -m "Temel ($GITHUB_EVENT_NAME) $(date -u +%F)"
+          for i in 1 2 3; do git pull -q --rebase origin "$GITHUB_REF_NAME" && git push -q origin "HEAD:$GITHUB_REF_NAME" && exit 0; sleep 10; done
+          exit 1
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: temel-${{ github.run_id }}
+          path: cikti/
+          retention-days: 30
