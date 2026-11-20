@@ -316,7 +316,8 @@ def kohort(klasor, test=False):
     kid = ("TEST-" if test else "") + "UV-" + simdi.astimezone(ZoneInfo("Europe/Istanbul")).strftime("%Y-%m-%d")
     hedef = ("sonuc/kohort-test/" if test else "temel/kayit/") + "uzun-vade-kayit-%s.json" % kid
     if os.path.exists(hedef):
-        raise SystemExit("kayit zaten var, degistirilmez: " + hedef)
+        print("KOHORT YOK: bu donemin kaydi zaten var, dosya degistirilmez:", hedef, flush=True)
+        return
     gun = son_islem_gunu()
     klas = "sonuc/kohort-test" if test else "sonuc/kohort-%s" % kid
     print("kohort", kid, "kayit fiyati gunu", gun, flush=True)
