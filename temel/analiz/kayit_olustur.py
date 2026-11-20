@@ -108,7 +108,7 @@ def main(klasor):
     R = {
      "kayit_id": KAYIT_ID,
      "kayit_fiyati_tarihi": GUN,
-     "olusturma": "2026-11-21 (Cumartesi; ABD ve BIST piyasaları kapalı)",
+     "olusturma": "2026-11-21 00:30 İstanbul (20.11.2026 21:30 UTC): BIST kapalı, ABD normal seansı kapanmış; kayıt fiyatı normal seans kapanışıdır, seans sonrası işlemler dahil değildir",
      "olusturan": "Claude (Opus 5.5), Yavuz'un Yatırım Ajanı oturumu",
      "amac": "Nvidia benzeri potansiyel taşıyan şirketleri seçme yeteneğinin ileriye dönük, önceden kayıtlı testi. Yatırım tavsiyesi değildir; pozisyon büyüklüğü önerilmez.",
      "fiyat_notu": "Fiyatlar 20.11.2026 Cuma resmi kapanışlarıdır (Yahoo, temettü düzeltmesiz 'kapanis' ve düzeltilmiş 'duz_kapanis'). Twelve Data ile çapraz denetim: CRDO 99,86 = 99,86; HNGE 105,72 = 105,72; TMDX 85,25 / 85,33 (%0,09 fark).",

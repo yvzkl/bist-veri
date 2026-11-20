@@ -5,5 +5,5 @@ Uzun vadeli aday kaydi UV-2026-11-21 nasil uretildi (yeniden uretmek icin):
    puanla.py (ilk eleme) -> derin_olc.py (cok yillik olcutler) -> sepet_b.py (B sepeti)
    kayit_olustur.py <klasor>  -> uzun-vade-kayit-UV-2026-11-21.json (A sepeti tezleri betigin icinde)
    rapor_olustur.py <kayit.json> <sha256> <rapor.txt> -> okunur rapor
-Kayit dosyasi (../kayit/) degistirilmez. SHA-256: d1b61cb9a5fe0760e213634ef83ca6c9fe2464091b670a44b64a220f45bb1770
+Kayit dosyasi (../kayit/) degistirilmez. SHA-256: 073105b8ac71a7fa21422c16b8f889cd729f3aebffc7118ae449e5df5574f596
 Izleme: temel_tarama.py izle -> sonuc/uzun-vade-izleme-UV-2026-11-21.json (ana dalda her ayin 20'si, ABD kapanisindan sonra).

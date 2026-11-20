@@ -31,7 +31,7 @@ def main(yol, ozet, cikti):
     h = R["huni"]
     L = []
     L += ["UZUN VADELİ ADAY KAYDI — %s" % R["kayit_id"], "",
-          "Bu kayıt, Nvidia benzeri potansiyel taşıyan şirketleri seçme yeteneğimin ileriye dönük testidir. Fiyatlar 20.11.2026 Cuma kapanışıdır; kayıt piyasalar kapalıyken (21.11.2026 Cumartesi) yapıldı ve değiştirilmez. Sonucu benim sözüm değil, 6, 12, 24 ve 36 ay sonraki getiriler gösterecek. Yatırım tavsiyesi değildir.", "",
+          "Bu kayıt, Nvidia benzeri potansiyel taşıyan şirketleri seçme yeteneğimin ileriye dönük testidir. Fiyatlar 20.11.2026 Cuma normal seans kapanışıdır; kayıt ABD seansı kapandıktan sonra (İstanbul 21.11.2026 00:30) yapıldı ve değiştirilmez. Sonucu benim sözüm değil, 6, 12, 24 ve 36 ay sonraki getiriler gösterecek. Yatırım tavsiyesi değildir.", "",
           "Değişmezlik: kayıt dosyası uzun-vade-kayit-%s.json (Drive › Tahmin defteri ve GitHub yvzkl/bist-veri ana dalı, temel/kayit/). SHA-256: %s" % (R["kayit_id"], ozet), "",
           "1) YÖNTEM",
           "• Taban: %s — %s hisse." % (h["taban_tanimi"], sayi(h["abd_taban"], 0)),
