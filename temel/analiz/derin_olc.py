@@ -66,9 +66,12 @@ def olc(info, tab, fiyat):
     m["fiyat"] = fiyat
     return m
 
-def hepsi():
+def hepsi(K=None, D=None):
     from puanla import hazirla
-    K = json.load(open("temel-tarama.json")); D = json.load(open("temel-derin.json"))
+    if K is None:
+        K = json.load(open("temel-tarama.json"))
+    if D is None:
+        D = json.load(open("temel-derin.json"))
     U, _ = hazirla(K)
     out = {}
     for d in U:

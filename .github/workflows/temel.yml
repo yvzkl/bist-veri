@@ -1,17 +1,19 @@
 # Yatırım Ajanı — uzun vadeli aday taraması ve kayıtlı sepetlerin izlenmesi (temel veriler ve fiyatlar Yahoo'dan).
 # temel-tarama dalına itme: temel/mod.txt'deki modu çalıştırır, sonucu YALNIZCA o dala yazar.
 # Ana dalda: her ayın 20'sinde (ABD kapanışından sonra) "izle" modu kayıtlı sepetlerin getirisini
-# sonuc/uzun-vade-izleme-*.json dosyasına yazar. Elle çalıştırma varsayılanı da "izle"dir.
+# sonuc/uzun-vade-izleme-*.json dosyasına yazar. Mayıs ve Kasım'ın 20'sinde ayrıca "kohort" modu aynı yöntemle
+# yeni bir mekanik kayıt (B + C) oluşturur; mevcut kayıt dosyaları asla değiştirilmez. Elle çalıştırma varsayılanı "izle"dir.
 name: Temel tarama
 
 on:
   workflow_dispatch:
     inputs:
       mod:
-        description: "kesif | tarama | derin | izle"
+        description: "kesif | tarama | derin | izle | kohort | kohort-test"
         default: "izle"
   schedule:
     - cron: "17 23 20 * *"
+    - cron: "47 23 20 5,11 *"
   push:
     branches: [temel-tarama]
     paths: ["temel/**", ".github/workflows/temel.yml"]
@@ -36,9 +38,11 @@ jobs:
       - name: Calistir
         env:
           GIRDI_MOD: ${{ github.event.inputs.mod }}
+          ZAMANLAMA: ${{ github.event.schedule }}
         run: |
           if [ "$GITHUB_EVENT_NAME" = "push" ]; then MOD="$(cat temel/mod.txt)"
-          elif [ "$GITHUB_EVENT_NAME" = "schedule" ]; then MOD=izle
+          elif [ "$GITHUB_EVENT_NAME" = "schedule" ]; then
+            if [ "$ZAMANLAMA" = "47 23 20 5,11 *" ]; then MOD=kohort; else MOD=izle; fi
           else MOD="${GIRDI_MOD:-izle}"; fi
           echo "mod: $MOD"
           python3 temel/temel_tarama.py "$MOD" cikti
@@ -47,7 +51,10 @@ jobs:
           git config user.name "bist-bot"
           git config user.email "bist-bot@users.noreply.github.com"
           if [ "$GITHUB_REF_NAME" = "temel-tarama" ]; then git add sonuc/*.json 2>/dev/null || true
-          else git add sonuc/uzun-vade-izleme-*.json 2>/dev/null || true; fi
+          else
+            for f in sonuc/uzun-vade-izleme-*.json temel/kayit/*.json sonuc/kohort-*/*.json; do if [ -e "$f" ]; then git add "$f"; fi; done
+          fi
+          if git diff --cached --name-only --diff-filter=MDR -- temel/kayit | grep -q .; then echo "HATA: mevcut kayit dosyasi degisemez"; exit 1; fi
           if git diff --cached --quiet; then echo "yazilacak degisiklik yok"; exit 0; fi
           git commit -q -m "Temel ($GITHUB_EVENT_NAME) $(date -u +%F)"
           for i in 1 2 3; do git pull -q --rebase origin "$GITHUB_REF_NAME" && git push -q origin "HEAD:$GITHUB_REF_NAME" && exit 0; sleep 10; done

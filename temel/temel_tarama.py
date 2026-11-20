@@ -1,5 +1,5 @@
 # Yatirim Ajani - uzun vadeli aday taramasi (temel veriler Yahoo'dan, yfinance ile). 21.11.2026.
-# Kullanim: python3 temel/temel_tarama.py <kesif|tarama|derin|izle> <cikti_klasoru>
+# Kullanim: python3 temel/temel_tarama.py <kesif|tarama|derin|izle|kohort|kohort-test> <cikti_klasoru>
 import sys, os, json, time, traceback, collections, glob, datetime as dt
 import yfinance as yf
 
@@ -96,17 +96,18 @@ def bilgi(s, tekrar=2):
             time.sleep(3 + 5 * k)
     return {"sembol": s, "hata": hata}
 
-def tarama(klasor):
-    import datetime as dt
+def tarama(klasor, hedef="sonuc/temel-tarama.json", bist_dahil=True):
     L = ["yfinance " + getattr(yf, "__version__", "?"), "zaman " + dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")]
     ev = evren_abd(L)
     L.append("ABD evreni: %d hisse" % len(ev))
     sys.path.insert(0, os.getcwd())
-    try:
-        import bist_cek
-        bist = [k + ".IS" for k in bist_cek.BIST]
-    except Exception as e:
-        bist = []; L.append("BIST listesi alinamadi: %r" % e)
+    bist = []
+    if bist_dahil:
+        try:
+            import bist_cek
+            bist = [k + ".IS" for k in bist_cek.BIST]
+        except Exception as e:
+            L.append("BIST listesi alinamadi: %r" % e)
     try:
         usdtry = yf.Ticker("USDTRY=X").fast_info["lastPrice"]
     except Exception as e:
@@ -120,11 +121,12 @@ def tarama(klasor):
                 print(grup, n, "/", len(liste), flush=True)
     hatali = [d["sembol"] for g in ("abd", "bist") for d in K[g] if "hata" in d]
     L.append("bilgi alinamayan: %d %s" % (len(hatali), ",".join(hatali[:30])))
-    os.makedirs("sonuc", exist_ok=True)
-    with open("sonuc/temel-tarama.json", "w", encoding="utf-8") as f:
+    os.makedirs(os.path.dirname(hedef), exist_ok=True)
+    with open(hedef, "w", encoding="utf-8") as f:
         json.dump(K, f, ensure_ascii=False)
     yaz(klasor, "tarama.txt", "\n".join(L) + "\n")
     print("\n".join(L))
+    return K
 
 # --- derin: secilen hisselerin yillik/ceyreklik tablolari + kayit gunu kapanis fiyatlari ---
 KAYIT_GUNU = "2026-11-20"
@@ -180,23 +182,41 @@ def _indir(semboller, bas, son=None):
 
 def kayit_fiyatlari(semboller, gun):
     g = dt.date.fromisoformat(gun)
-    df = _indir(semboller, (g - dt.timedelta(days=6)).isoformat(), (g + dt.timedelta(days=1)).isoformat())
+    bas, son = (g - dt.timedelta(days=6)).isoformat(), (g + dt.timedelta(days=1)).isoformat()
+    def oku(df, s):
+        c, a = df["Close"], df["Adj Close"]
+        if hasattr(c, "columns"):
+            c = c[s] if s in c.columns else c.iloc[:, 0]
+            a = a[s] if s in a.columns else a.iloc[:, 0]
+        c = c.dropna(); a = a.dropna()
+        c = c[c.index.date <= g]; a = a[a.index.date <= g]
+        return {"tarih": str(c.index[-1].date()), "kapanis": round(float(c.iloc[-1]), 4), "duz_kapanis": round(float(a.iloc[-1]), 4)}
+    df = _indir(semboller, bas, son)
     F = {}
     for s in semboller:
         try:
-            c = df["Close"][s].dropna(); a = df["Adj Close"][s].dropna()
-            c = c[c.index.date <= g]; a = a[a.index.date <= g]
-            F[s] = {"tarih": str(c.index[-1].date()), "kapanis": round(float(c.iloc[-1]), 4), "duz_kapanis": round(float(a.iloc[-1]), 4)}
+            F[s] = oku(df, s)
         except Exception as e:
             F[s] = {"hata": repr(e)[:120]}
+    for s in [s for s in semboller if F[s].get("tarih") != gun]:
+        for k in range(2):  # toplu indirmede gecici hata: tek tek, iplik olmadan yeniden dene
+            try:
+                F[s] = oku(yf.download(s, start=bas, end=son, auto_adjust=False, progress=False, threads=False), s)
+            except Exception as e:
+                F[s] = {"hata": repr(e)[:120]}
+            if F[s].get("tarih") == gun:
+                break
+            time.sleep(2 + 2 * k)
     return F
 
-def derin(klasor):
+def derin(klasor, liste=None, evren=None, gun=KAYIT_GUNU, hedef="sonuc/temel-derin.json"):
     L = ["yfinance " + getattr(yf, "__version__", "?"), "zaman " + dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")]
-    liste = [x.strip() for x in open("temel/derin_liste.txt") if x.strip()]
-    evren = [x.strip() for x in open("temel/evren_liste.txt") if x.strip()]
-    K = {"zaman": L[1][6:], "kayit_gunu": KAYIT_GUNU,
-         "fiyat": kayit_fiyatlari(sorted(set(evren + liste + KIYAS)), KAYIT_GUNU), "tablo": {}}
+    if liste is None:
+        liste = [x.strip() for x in open("temel/derin_liste.txt") if x.strip()]
+    if evren is None:
+        evren = [x.strip() for x in open("temel/evren_liste.txt") if x.strip()]
+    K = {"zaman": L[1][6:], "kayit_gunu": gun,
+         "fiyat": kayit_fiyatlari(sorted(set(evren + liste + KIYAS)), gun), "tablo": {}}
     for n, s in enumerate(liste):
         K["tablo"][s] = derin_bir(s)
         time.sleep(0.3)
@@ -209,11 +229,12 @@ def derin(klasor):
     L.append("fiyat tarihleri: %s" % dict(collections.Counter(v.get("tarih") for v in K["fiyat"].values())))
     hatalar = collections.Counter(k for v in K["tablo"].values() for k in v if k.endswith("_hata"))
     L.append("tablo hatalari: %s" % dict(hatalar))
-    os.makedirs("sonuc", exist_ok=True)
-    with open("sonuc/temel-derin.json", "w", encoding="utf-8") as f:
+    os.makedirs(os.path.dirname(hedef), exist_ok=True)
+    with open(hedef, "w", encoding="utf-8") as f:
         json.dump(K, f, ensure_ascii=False)
     yaz(klasor, "derin.txt", "\n".join(L) + "\n")
     print("\n".join(L))
+    return K
 
 # --- izle: kayitli sepetlerin kayit gununden bugune toplam getirisi (temettu duzeltmeli, ayni seriden) ---
 def _seri(df, s):
@@ -275,6 +296,78 @@ def izle(klasor):
     yaz(klasor, "izle.txt", "\n".join(L) + "\n")
     print("\n".join(L))
 
+# --- kohort: 6 ayda bir ayni yontemle yeni mekanik kayit (B + C + kiyas). A sepeti Claude tarafindan Drive'a ayrica kaydedilir ---
+def son_islem_gunu():
+    df = yf.download("SPY", period="10d", auto_adjust=False, progress=False, threads=False)
+    return str(df.dropna(how="all").index[-1].date())
+
+def ay_ekle(gun, n):
+    import calendar
+    d = dt.date.fromisoformat(gun)
+    y, m = divmod(d.month - 1 + n, 12)
+    y, m = d.year + y, m + 1
+    return dt.date(y, m, min(d.day, calendar.monthrange(y, m)[1])).isoformat()
+
+def kohort(klasor, test=False):
+    from zoneinfo import ZoneInfo
+    sys.path.insert(0, os.path.join(os.path.dirname(os.path.abspath(__file__)), "analiz"))
+    import puanla, derin_olc, sepet_b
+    simdi = dt.datetime.now(dt.timezone.utc)
+    kid = ("TEST-" if test else "") + "UV-" + simdi.astimezone(ZoneInfo("Europe/Istanbul")).strftime("%Y-%m-%d")
+    hedef = ("sonuc/kohort-test/" if test else "temel/kayit/") + "uzun-vade-kayit-%s.json" % kid
+    if os.path.exists(hedef):
+        raise SystemExit("kayit zaten var, degistirilmez: " + hedef)
+    gun = son_islem_gunu()
+    klas = "sonuc/kohort-test" if test else "sonuc/kohort-%s" % kid
+    print("kohort", kid, "kayit fiyati gunu", gun, flush=True)
+    K = tarama(klasor, hedef=klas + "/temel-tarama.json", bist_dahil=False)
+    U, ele1 = puanla.hazirla(K)
+    liste = sorted(d["sembol"] for d in U)
+    C0 = sorted(d["sembol"] for d in K["abd"] if "hata" not in d)
+    D = derin(klasor, liste=liste, evren=C0, gun=gun, hedef=klas + "/temel-derin.json")
+    F = D["fiyat"]
+    gecerli = lambda x: F.get(x, {}).get("tarih") == gun
+    fiyatsiz = sorted(x for x in set(C0 + KIYAS) if not gecerli(x))
+    C = [x for x in C0 if gecerli(x)]
+    M, _ = derin_olc.hepsi(K, D)
+    M = {x: m for x, m in M.items() if gecerli(x)}
+    ilk20, sira, G, Kal = sepet_b.sec(M)
+    f = lambda v: None if v is None else round(v, 4)
+    R = {
+     "kayit_id": kid,
+     "kayit_fiyati_tarihi": gun,
+     "olusturma": simdi.strftime("%Y-%m-%d %H:%M UTC") + " (GitHub Actions, otomatik kohort; kayit fiyati ABD normal seans kapanisi)",
+     "olusturan": "GitHub Actions 'Temel tarama' is akisi, kohort modu (mekanik; yargi yok)",
+     "amac": "UV-2026-11-21 ile ayni yontemle 6 ayda bir yeni kohort. Bu dosya B (sistematik) ve C (ekran evreni) sepetlerini kaydeder. A sepeti (Claude'un secimi) yalnizca a_aday_listesi'nden 10 hisse olarak secilir ve Drive Tahmin defterine 'uzun-vade-kayit-%s-A.json' adiyla kaydedilir; A'nin getirisi bu kohortun izleme dosyasindaki hisse getirilerinden hesaplanir (A, C'nin alt kumesidir). Yatirim tavsiyesi degildir." % kid,
+     "yontem": "Yahoo ekrani (ABD borsalari, piyasa degeri 0,3-40 milyar $, fiyat >=3 $, hacim >=200 bin, gelir buyumesi >=%15, brut marj >=%40, kaldiracli FCF >0); temel/analiz/puanla.py ilk eleme; derin_olc.py olcutler; sepet_b.py kapilar ve agirliklar (UV-2026-11-21 ile ayni).",
+     "huni": {"ekran": len(C0), "ilk_eleme_sonrasi": len(liste), "ilk_eleme_nedenleri": ele1,
+              "b_kapilarindan_gecen": len(G), "b_kapisi_eleme_nedenleri": dict(collections.Counter(Kal.values())),
+              "kayit_fiyati_olmayan": fiyatsiz},
+     "a_aday_listesi": liste,
+     "sepetler": {"B_sistematik": ilk20, "C_ekran_evreni": C},
+     "kiyas": KIYAS,
+     "B_detay": [{"sembol": x, "ad": M[x]["info"].get("shortName"), "puan": M[x]["puan_b"], "kayit_kapanis": F[x]["kapanis"],
+                  "piyasa_degeri_mn": round(M[x]["mcap"] / 1e6), "fcf_eksi_sbc_getirisi": f(M[x]["fcf_sbc_getiri"]),
+                  "gelir_bilesik_buyume": f(M[x]["cagr"]), "brut_marj": f(M[x]["brut_son"])} for x in ilk20],
+     "hipotezler": [
+      {"id": "H1", "ana": True, "metin": "36. ayda (%s kapanisi) A sepetinin esit agirlikli toplam getirisi IWM'in toplam getirisinden yuksek olur." % ay_ekle(gun, 36)},
+      {"id": "H2", "metin": "36. ayda A sepeti B sepetini gecer."},
+      {"id": "H3", "metin": "36. ayda B sepeti C evrenini gecer."},
+      {"id": "H4", "metin": "36. ayda A sepetinde 3 kat (>= +%200) yapan hisselerin orani C evrenindeki orandan yuksek olur."}],
+     "degerlendirme": {"yontem": "Esit agirlik, kayit kapanisinda al-tut, yeniden dengeleme yok; getiri ayni temettu duzeltmeli seride degerlendirme gunu / kayit gunu - 1.",
+                       "kote_olmayan_hisse": "Satin alma ya da borsadan cikma: son islem fiyati ile kapanir, sonrasi %0; iflas: -%100.",
+                       "ara_kontroller": [ay_ekle(gun, 6), ay_ekle(gun, 12), ay_ekle(gun, 24)], "nihai": ay_ekle(gun, 36),
+                       "ara_kontrol_kurali": "Ara kontrollerde hukum verilmez."},
+     "fiyatlar": {x: {"kapanis": F[x]["kapanis"], "duz_kapanis": F[x]["duz_kapanis"]} for x in sorted(set(C + KIYAS) - set(fiyatsiz))},
+    }
+    os.makedirs(os.path.dirname(hedef), exist_ok=True)
+    with open(hedef, "w", encoding="utf-8") as fh:
+        json.dump(R, fh, ensure_ascii=False, indent=1)
+    print("KOHORT YAZILDI", hedef, "| gun", gun, "| C", len(C), "| A aday", len(liste), "| B kapisi", len(G),
+          "| fiyatsiz", fiyatsiz[:10], "| B:", ",".join(ilk20), flush=True)
+    if not test:
+        izle(klasor)
+
 if __name__ == "__main__":
     mod = sys.argv[1] if len(sys.argv) > 1 else "kesif"
     klasor = sys.argv[2] if len(sys.argv) > 2 else "cikti"
@@ -286,5 +379,9 @@ if __name__ == "__main__":
         derin(klasor)
     elif mod == "izle":
         izle(klasor)
+    elif mod == "kohort":
+        kohort(klasor)
+    elif mod == "kohort-test":
+        kohort(klasor, test=True)
     else:
         print("bilinmeyen mod", mod); sys.exit(2)
