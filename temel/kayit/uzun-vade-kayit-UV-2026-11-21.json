@@ -1,0 +1,2681 @@
+{
+ "kayit_id": "UV-2026-11-21",
+ "kayit_fiyati_tarihi": "2026-11-20",
+ "olusturma": "2026-11-21 (Cumartesi; ABD ve BIST piyasaları kapalı)",
+ "olusturan": "Claude (Opus 5.5), Yavuz'un Yatırım Ajanı oturumu",
+ "amac": "Nvidia benzeri potansiyel taşıyan şirketleri seçme yeteneğinin ileriye dönük, önceden kayıtlı testi. Yatırım tavsiyesi değildir; pozisyon büyüklüğü önerilmez.",
+ "fiyat_notu": "Fiyatlar 20.11.2026 Cuma resmi kapanışlarıdır (Yahoo, temettü düzeltmesiz 'kapanis' ve düzeltilmiş 'duz_kapanis'). Twelve Data ile çapraz denetim: CRDO 99,86 = 99,86; HNGE 105,72 = 105,72; TMDX 85,25 / 85,33 (%0,09 fark).",
+ "piyasa_baglami": "Kayıt yapay zekâ ağırlıklı bir düzeltmenin ortasında yapıldı: 5 Kasım'da Nasdaq 100 2020'den beri en kötü gününü yaşadı; 12 Kasım'da Nvidia CEO'su Jensen Huang istifa etti; seçim sonrası veri merkezi politikası kaygıları ve yeni çip ihracat kısıtları; 2026 başından beri yazılım hisselerinde yapay zekâ kaynaklı sert satış; VIX 19.11'de 28,4; kayıt günü 20.11'de SPY −%3,6, QQQ −%5,7 (Yahoo kapanışları). Kıyas fonları aynı günden başladığı için göreli karşılaştırma adildir; mutlak getiriler bu başlangıçtan etkilenir.",
+ "veri_kaynagi": {
+  "temel_ve_fiyat": "Yahoo Finance, yfinance 1.8.x, GitHub Actions (yvzkl/bist-veri, temel-tarama dalı)",
+  "tarama_calismasi": "44816960014 (commit 6ae221b, 2026-11-20 21:04 UTC)",
+  "derin_calisma": "44818593795 (commit 092abdb)",
+  "son_ceyrek_bilgileri": "Şirket açıklamaları ve haber kaynakları; A_detay içinde bağlantılar"
+ },
+ "huni": {
+  "abd_taban": 2425,
+  "taban_tanimi": "ABD borsaları (NMS, NGM, NCM, NYQ, ASE), piyasa değeri 0,3–40 milyar $, fiyat ≥3 $, 3 aylık ortalama hacim ≥200 bin",
+  "ekran": 331,
+  "ekran_tanimi": "Yıllık gelir büyümesi ≥%15, brüt marj ≥%40, kaldıraçlı serbest nakit akışı >0",
+  "ilk_eleme_sonrasi": 128,
+  "ilk_eleme_nedenleri": {
+   "finans/gayrimenkul": 49,
+   "emtia/dongusel sektor": 62,
+   "FCF getirisi > %25 (veri supheli)": 4,
+   "son ceyrek buyume < %10": 15,
+   "faaliyet zarari": 46,
+   "buyume > %150 (tek seferlik/birlesme supheli)": 6,
+   "raporlama para birimi farkli": 10,
+   "gunluk islem < 5 milyon $": 9,
+   "eksik veri": 1,
+   "piyasa degeri > 40 milyar $": 1
+  },
+  "b_kapilarindan_gecen": 38,
+  "b_kapilari": [
+   "piyasa degeri <= 20 milyar $",
+   "gelir bilesik buyume (3 yil; yoksa 2) >= %15",
+   "FCF - SBC (son 4 ceyrek) > 0",
+   "FCF - SBC getirisi <= %15 (ustu: veri supheli, ornegin musteri fonu nakit akisina karisiyor)",
+   "hisse sayisi artisi (3 yil) <= %20",
+   "analist gelecek yil gelir buyumesi >= %10 (tahmin yoksa gecer)"
+  ],
+  "b_agirliklari": {
+   "fcf_sbc_getiri": 0.3,
+   "cagr": 0.2,
+   "tahmin_gelecek_yil": 0.15,
+   "brut_son": 0.15,
+   "faal_marj_ttm": 0.1,
+   "mcap": 0.1
+  },
+  "b_kapisi_eleme_nedenleri": {
+   "gelir bilesik buyume (3 yil; yoksa 2) >= %15": 46,
+   "hisse sayisi artisi (3 yil) <= %20": 17,
+   "FCF - SBC (son 4 ceyrek) > 0": 5,
+   "piyasa degeri <= 20 milyar $": 14,
+   "FCF - SBC getirisi <= %15 (ustu: veri supheli, ornegin musteri fonu nakit akisina karisiyor)": 3,
+   "analist gelecek yil gelir buyumesi >= %10 (tahmin yoksa gecer)": 5
+  }
+ },
+ "sepetler": {
+  "A_claude": [
+   "CRDO",
+   "DOCN",
+   "NVMI",
+   "RMBS",
+   "RDDT",
+   "GLBE",
+   "HNGE",
+   "TMDX",
+   "ALNY",
+   "KRYS"
+  ],
+  "B_sistematik": [
+   "AUPH",
+   "KRYS",
+   "HRMY",
+   "LFTO",
+   "TAL",
+   "HALO",
+   "HNGE",
+   "NBIX",
+   "EVER",
+   "GLBE",
+   "OPRA",
+   "ALNY",
+   "YOU",
+   "DUOL",
+   "RMBS",
+   "MNDY",
+   "KNSA",
+   "CORT",
+   "APPF",
+   "FRSH"
+  ],
+  "C_ekran_evreni": [
+   "AAMI",
+   "AAUC",
+   "ABUS",
+   "AD",
+   "ADC",
+   "ADEA",
+   "ADPT",
+   "AFRM",
+   "AG",
+   "AGI",
+   "AII",
+   "AIP",
+   "ALAB",
+   "ALGM",
+   "ALKS",
+   "ALKT",
+   "ALNY",
+   "AMBA",
+   "AMPL",
+   "ANGX",
+   "ANIP",
+   "APPF",
+   "APPN",
+   "APPS",
+   "AR",
+   "ARIS",
+   "ARLO",
+   "ARQT",
+   "AS",
+   "ASC",
+   "ASM",
+   "ASND",
+   "ATAT",
+   "ATEC",
+   "AU",
+   "AUGO",
+   "AUPH",
+   "AVPT",
+   "AXGN",
+   "AXON",
+   "AXTI",
+   "AYA",
+   "BCRX",
+   "BILL",
+   "BLLN",
+   "BLSH",
+   "BLZE",
+   "BRO",
+   "BRZE",
+   "BTG",
+   "BVN",
+   "CALX",
+   "CALY",
+   "CARG",
+   "CDE",
+   "CDNA",
+   "CDRE",
+   "CELH",
+   "CF",
+   "CGNX",
+   "CHRD",
+   "CHYM",
+   "CIEN",
+   "CLBT",
+   "COHU",
+   "CORT",
+   "COUR",
+   "CPAY",
+   "CR",
+   "CRDO",
+   "CRGY",
+   "CRMD",
+   "CRML",
+   "CRON",
+   "CSGP",
+   "CTO",
+   "CURB",
+   "CWEN",
+   "CXT",
+   "DAVE",
+   "DCTH",
+   "DGII",
+   "DJT",
+   "DKNG",
+   "DOCN",
+   "DRD",
+   "DRVN",
+   "DT",
+   "DUOL",
+   "EDU",
+   "ELF",
+   "EPRT",
+   "EQT",
+   "EQX",
+   "ERO",
+   "ESE",
+   "ESTC",
+   "ETON",
+   "EVER",
+   "EVLV",
+   "EVTC",
+   "EXE",
+   "EXK",
+   "FA",
+   "FCFS",
+   "FDUS",
+   "FENC",
+   "FICO",
+   "FIG",
+   "FIGS",
+   "FIP",
+   "FLOC",
+   "FLYW",
+   "FORM",
+   "FRO",
+   "FROG",
+   "FRSH",
+   "FSLY",
+   "FSM",
+   "GAB",
+   "GEN",
+   "GFI",
+   "GKOS",
+   "GLBE",
+   "GLNG",
+   "GPN",
+   "GRND",
+   "GSHD",
+   "GTLB",
+   "GWRE",
+   "HALO",
+   "HAS",
+   "HBM",
+   "HEI-A",
+   "HIMS",
+   "HIPO",
+   "HL",
+   "HLIT",
+   "HLNE",
+   "HMY",
+   "HNGE",
+   "HNI",
+   "HOS",
+   "HRMY",
+   "HSHP",
+   "HUBS",
+   "IA",
+   "IAG",
+   "IHS",
+   "IMAX",
+   "INCY",
+   "INNV",
+   "INOD",
+   "INSW",
+   "IOT",
+   "IRS",
+   "IRTC",
+   "IRWD",
+   "IX",
+   "JXN",
+   "KGC",
+   "KIDS",
+   "KLIC",
+   "KN",
+   "KNSA",
+   "KNTK",
+   "KRP",
+   "KRYS",
+   "KTB",
+   "KVYO",
+   "KYIV",
+   "LB",
+   "LFTO",
+   "LFUS",
+   "LIF",
+   "LIFE",
+   "LINC",
+   "LIND",
+   "LION",
+   "LKFT",
+   "LMND",
+   "LOAR",
+   "LPG",
+   "LQDA",
+   "LSCC",
+   "LTC",
+   "LUXE",
+   "MCHP",
+   "MDB",
+   "MEDP",
+   "MGTX",
+   "MGY",
+   "MHD",
+   "MIR",
+   "MIRM",
+   "MKSI",
+   "MNDY",
+   "MNR",
+   "MNTN",
+   "MQ",
+   "MQY",
+   "MSGE",
+   "MTA",
+   "MTSI",
+   "MUA",
+   "MUC",
+   "MYN",
+   "NAT",
+   "NAVN",
+   "NBIX",
+   "NMAX",
+   "NMRK",
+   "NP",
+   "NRIX",
+   "NTRA",
+   "NTSK",
+   "NTST",
+   "NVMI",
+   "NXST",
+   "OABI",
+   "OGC",
+   "OMDA",
+   "ONON",
+   "ONTO",
+   "OOMA",
+   "OPRA",
+   "OTF",
+   "PAAS",
+   "PAR",
+   "PAYS",
+   "PCOR",
+   "PCQ",
+   "PEN",
+   "PICS",
+   "PINS",
+   "PL",
+   "PML",
+   "PODD",
+   "PPLI",
+   "PR",
+   "PRCH",
+   "PSTL",
+   "PTRN",
+   "Q",
+   "RBC",
+   "RBRK",
+   "RDDT",
+   "RDN",
+   "REAL",
+   "RELY",
+   "REPX",
+   "RGLD",
+   "RKT",
+   "RMBS",
+   "RPAY",
+   "RRC",
+   "RSKD",
+   "S",
+   "SAIL",
+   "SB",
+   "SBRA",
+   "SCZM",
+   "SE",
+   "SEZL",
+   "SGI",
+   "SHAZ",
+   "SHOO",
+   "SLAB",
+   "SLDE",
+   "SLG",
+   "SM",
+   "SMTC",
+   "SN",
+   "SNDK",
+   "SPHR",
+   "SQM",
+   "SSRM",
+   "STAA",
+   "STC",
+   "STNG",
+   "SUI",
+   "SUPN",
+   "TAL",
+   "TARS",
+   "TEAM",
+   "TECK",
+   "TEM",
+   "TER",
+   "TFX",
+   "TGTX",
+   "TIGO",
+   "TK",
+   "TKO",
+   "TLN",
+   "TLS",
+   "TMDX",
+   "TNK",
+   "TPL",
+   "TREE",
+   "TRIN",
+   "TRMD",
+   "TRNO",
+   "TTAN",
+   "TWLO",
+   "U",
+   "UPST",
+   "VCEL",
+   "VCTR",
+   "VCYT",
+   "VET",
+   "VIAV",
+   "VICR",
+   "VIST",
+   "VMD",
+   "VNOM",
+   "VRNS",
+   "VST",
+   "WAY",
+   "WES",
+   "WK",
+   "WSE",
+   "WT",
+   "WTS",
+   "XERS",
+   "YOU",
+   "Z",
+   "ZBRA",
+   "ZETA",
+   "ZG",
+   "ZS",
+   "ZVRA"
+  ]
+ },
+ "kiyas": [
+  "IWM",
+  "RSP",
+  "SPY",
+  "QQQ"
+ ],
+ "A_secim_olcutleri": [
+  "Platform ya da hendek: kopyalanması zor teknoloji, ağ etkisi ya da ekosistem; brüt marj tercihen %55+",
+  "Seküler talep: yapay zekâ hesaplama/çıkarım, dijital sağlık, genetik ilaçlar, küresel e-ticaret",
+  "Büyüme pisti: bugün %25+ büyüme ve gelecek yıl için %15+ beklenti",
+  "Kendini finanse etme: pozitif serbest nakit akışı ya da gerekçeli yatırım dönemi",
+  "Kurucu ya da ortak çıkarı tercih edilir",
+  "Piyasa değeri 20 milyar $ ve altı (on kat için alan)",
+  "Tema yoğunlaşması sınırı: yapay zekâ altyapısında en fazla dört şirket"
+ ],
+ "A_detay": [
+  {
+   "sembol": "CRDO",
+   "ad": "Credo Technology Group Holding Ltd",
+   "tema": "Yapay zekâ veri merkezi bağlantısı",
+   "kayit_kapanis": 99.86,
+   "tez": "Yapay zekâ kümelerinde darboğaz hesaplamadan bağlantıya kayıyor. Credo aktif elektrik kablosu (AEC) kategorisini yaratan şirket; optik DSP ile ikinci büyüme motorunu kuruyor. FY2026 geliri üç katına çıktı (1,34 milyar $), FY2027 için %85+ büyüme rehberi var, düzeltilmiş brüt marj ~%68. Kasım satışıyla fiyat 52 haftalık zirvenin üçte birine indi; şirkete özgü kötü haber yok.",
+   "riskler": "Gelirin büyük kısmı birkaç hiper ölçekliden. Yapay zekâ yatırım döngüsü dönerse (Nvidia'daki yönetim krizi, veri merkezi politikası) ilk vurulanlardan olur. Broadcom, Marvell ve MaxLinear rekabeti. Hisse bazlı ödeme gelirin %15'i; hisse sayısı 3 yılda %28 arttı.",
+   "olum_kriterleri": [
+    "FY2028 bitmeden art arda 2 çeyrek yıllık gelir büyümesi %20'nin altında",
+    "Düzeltilmiş brüt marj 2 çeyrek üst üste %60'ın altında",
+    "En büyük müşteri kaybının açıklanması"
+   ],
+   "kaynaklar": [
+    "https://www.sec.gov/Archives/edgar/data/0001807794/000162828026059795/credoq12027ex-991.htm",
+    "https://www.trefis.com/stock/crdo/articles/625288/why-did-credo-technology-stock-fall/2026-11-16"
+   ],
+   "olcutler": {
+    "piyasa_degeri_mn": 18769,
+    "gelir_ttm_mn": 1591,
+    "ev_satis_ttm": 11.3,
+    "gelir_bilesik_buyume": 0.9353,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.6804,
+    "faaliyet_marji_ttm": 0.3174,
+    "fcf_eksi_sbc_getirisi": 0.0108,
+    "sbc_gelir": 0.1478,
+    "hisse_sayisi_artisi": 0.2792,
+    "net_nakit_piyasa_degeri": 0.0393,
+    "analist_bu_yil_buyume": 0.8748,
+    "analist_gelecek_yil_buyume": 0.5499,
+    "iceriden_sahiplik": 0.0915,
+    "degisim_52h": -0.1178,
+    "zirve_52h": 308.67,
+    "dip_52h": 86.485
+   }
+  },
+  {
+   "sembol": "DOCN",
+   "ad": "DigitalOcean Holdings, Inc.",
+   "tema": "Yapay zekâ çıkarım (inference) bulutu",
+   "kayit_kapanis": 66.77,
+   "tez": "Geliştiricilere ve yapay zekâ yerlisi şirketlere yönelik bulut. Büyüme beş çeyrektir hızlanıyor (Q3 2026: %40), yapay zekâ müşteri ARR'ı yıllık %288 artışla 376 milyon $'a çıktı, yönetim 2027 için %60+ büyüme bekliyor. Çıkarım talebi eğitimden daha geniş ve kalıcı olabilir: Nvidia'nın 'kürek satıcısı' mantığının bulut katmanı.",
+   "riskler": "GPU yatırımı serbest nakit akışını sıfırladı (Q3 FCF marjı ~%0) ve net borç var. Hiper ölçekliler ve neocloud'larla fiyat rekabeti. Talep yavaşlarsa kapasite atıl kalır.",
+   "olum_kriterleri": [
+    "2027 yıllık gelir büyümesi %35'in altında",
+    "2028'de hâlâ negatif serbest nakit akışı ve artan net borç",
+    "Yapay zekâ müşteri ARR'ında çeyreklik düşüş"
+   ],
+   "kaynaklar": [
+    "https://www.sec.gov/Archives/edgar/data/0001582961/000162828026069125/a2026-q3dopressrelease.htm"
+   ],
+   "olcutler": {
+    "piyasa_degeri_mn": 7872,
+    "gelir_ttm_mn": 1103,
+    "ev_satis_ttm": 8.2,
+    "gelir_bilesik_buyume": 0.1608,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.5986,
+    "faaliyet_marji_ttm": 0.1249,
+    "fcf_eksi_sbc_getirisi": -0.0084,
+    "sbc_gelir": 0.1009,
+    "hisse_sayisi_artisi": 0.045,
+    "net_nakit_piyasa_degeri": -0.1533,
+    "analist_bu_yil_buyume": 0.3431,
+    "analist_gelecek_yil_buyume": 0.6164,
+    "iceriden_sahiplik": 0.1651,
+    "degisim_52h": 0.7596,
+    "zirve_52h": 187.5,
+    "dip_52h": 42.01
+   }
+  },
+  {
+   "sembol": "NVMI",
+   "ad": "Nova Ltd.",
+   "tema": "Yarı iletken ölçüm (metroloji)",
+   "kayit_kapanis": 280.86,
+   "tez": "Her yeni üretim düğümü, HBM ve gelişmiş paketleme ölçüm ihtiyacını artırıyor; Nova bu alanda KLA'nın yanındaki birkaç oyuncudan biri. Q3 2026 geliri yıllık %28 artışla rekor (287,8 milyon $), GAAP faaliyet marjı %32. Fiyat 52 haftalık zirvenin yarısının altında.",
+   "riskler": "Yarı iletken ekipman döngüsü; dört müşteri gelirin en az %10'unu tek başına veriyor; İsrail merkezli (jeopolitik); Çin'e ihracat kısıtları.",
+   "olum_kriterleri": [
+    "2 çeyrek üst üste yıllık gelir düşüşü %15'ten fazla",
+    "Brüt marjın %50'nin altına inmesi",
+    "Gelişmiş paketlemede pazar payı kaybının açıklanması"
+   ],
+   "kaynaklar": [
+    "https://www.prnewswire.com/il/news-releases/nova-reports-record-third-quarter-2026-financial-results-302930609.html",
+    "https://www.marketbeat.com/instant-alerts/transcript-nova-q3-earnings-call-highlights-2026-11-06/"
+   ],
+   "olcutler": {
+    "piyasa_degeri_mn": 8933,
+    "gelir_ttm_mn": 1001,
+    "ev_satis_ttm": 8.7,
+    "gelir_bilesik_buyume": 0.1555,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.5737,
+    "faaliyet_marji_ttm": 0.2533,
+    "fcf_eksi_sbc_getirisi": 0.0253,
+    "sbc_gelir": 0.0281,
+    "hisse_sayisi_artisi": 0.0292,
+    "net_nakit_piyasa_degeri": 0.0308,
+    "analist_bu_yil_buyume": 0.2335,
+    "analist_gelecek_yil_buyume": 0.2791,
+    "iceriden_sahiplik": 0.0025,
+    "degisim_52h": 0.0813,
+    "zirve_52h": 615.99,
+    "dip_52h": 266.43
+   }
+  },
+  {
+   "sembol": "RMBS",
+   "ad": "Rambus Inc.",
+   "tema": "Bellek arayüz çipleri ve patentler",
+   "kayit_kapanis": 66.35,
+   "tez": "Yapay zekâ sunucularında bellek bant genişliği darboğazı büyüyor; Rambus DDR5 RCD, MRDIMM ve CXL arayüz çiplerinde güçlü, ayrıca patent geliri var. Q3 2026'da ürün geliri rekor (yıllık +%22), ~777 milyon $ nakit, borç yok denecek kadar az, hisse sayısı artmıyor.",
+   "riskler": "Montage ve Renesas rekabeti; bellek döngüsü; lisans gelirinde dalgalanma. On kat için çok büyük yeni bir pazar gerekir: daha çok kaliteli bileşik büyüyen profili.",
+   "olum_kriterleri": [
+    "Bir yıl boyunca ürün geliri büyümesi %5'in altında",
+    "DDR5/MRDIMM'de pay kaybının açıklanması"
+   ],
+   "kaynaklar": [
+    "https://finviz.com/news/408070/rambus-reports-third-quarter-2026-financial-results"
+   ],
+   "olcutler": {
+    "piyasa_degeri_mn": 7106,
+    "gelir_ttm_mn": 796,
+    "ev_satis_ttm": 8.0,
+    "gelir_bilesik_buyume": 0.1588,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.7959,
+    "faaliyet_marji_ttm": 0.3673,
+    "fcf_eksi_sbc_getirisi": 0.0357,
+    "sbc_gelir": 0.074,
+    "hisse_sayisi_artisi": -0.0022,
+    "net_nakit_piyasa_degeri": 0.1065,
+    "analist_bu_yil_buyume": 0.1883,
+    "analist_gelecek_yil_buyume": 0.205,
+    "iceriden_sahiplik": 0.0078,
+    "degisim_52h": -0.1357,
+    "zirve_52h": 174.1,
+    "dip_52h": 65.63
+   }
+  },
+  {
+   "sembol": "RDDT",
+   "ad": "Reddit, Inc.",
+   "tema": "İnsan sohbeti ağı ve yapay zekâ veri lisansı",
+   "kayit_kapanis": 85.31,
+   "tez": "İnternetin en büyük insan üretimi tartışma arşivi; yapay zekâ modelleri için benzersiz veri (Google ve OpenAI lisansları). Q3 2026'da gelir +%53, reklam geliri +%54, serbest nakit akışı marjı %40; kurucu (Steve Huffman) yönetimde. Sonuç sonrası %30 düşüş ve yapay zekâ satışıyla fiyat zirvenin üçte biri.",
+   "riskler": "Google'ın AI Overviews/AI Mode özellikleri arama trafiğini kesiyor; yönetim Q4'te günlük kullanıcıda düşük çift haneli düşüş bekliyor. Bu, tezin merkezine vuran gerçek bir risk. ABD günlük kullanıcısı yıllık %2 düştü.",
+   "olum_kriterleri": [
+    "Oturum açmış günlük kullanıcıda 2 çeyrek üst üste yıllık düşüş",
+    "2027 içinde yıllık gelir büyümesinin %15'in altına inmesi"
+   ],
+   "kaynaklar": [
+    "https://www.trefis.com/stock/rddt/articles/622319/what-did-reddits-quarter-change-for-its-stock/2026-11-03",
+    "https://stockstory.org/us/stocks/nyse/rddt/news/earnings/reddit-nyserddt-surprises-with-q3-2026-sales-but-stock-drops-126percent"
+   ],
+   "olcutler": {
+    "piyasa_degeri_mn": 16473,
+    "gelir_ttm_mn": 3089,
+    "ev_satis_ttm": 4.4,
+    "gelir_bilesik_buyume": 0.4893,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.9118,
+    "faaliyet_marji_ttm": 0.294,
+    "fcf_eksi_sbc_getirisi": 0.0493,
+    "sbc_gelir": 0.1249,
+    "hisse_sayisi_artisi": 0.3675,
+    "net_nakit_piyasa_degeri": 0.1822,
+    "analist_bu_yil_buyume": 0.5372,
+    "analist_gelecek_yil_buyume": 0.2838,
+    "iceriden_sahiplik": 0.0067,
+    "degisim_52h": -0.5101,
+    "zirve_52h": 263.5,
+    "dip_52h": 84.595
+   }
+  },
+  {
+   "sembol": "GLBE",
+   "ad": "Global-E Online Ltd.",
+   "tema": "Sınır ötesi e-ticaret altyapısı",
+   "kayit_kapanis": 33.84,
+   "tez": "Markaların yurt dışına doğrudan satışını (vergi, gümrük, ödeme, iade) kayıtlı satıcı olarak üstlenen platform; Shopify ortaklığı; kurucular yönetimde. Q3 2026'da gelir +%42, düzeltilmiş FAVÖK marjı %20,3; net nakit ve 500 milyon $'lık geri alım programı.",
+   "riskler": "Organik büyüme soğuyor (GMV +%35, önceki çeyrek %44; çeyreklik GMV geriledi). Shopify'a bağımlılık; ABD gümrük/tarife politikası; kur.",
+   "olum_kriterleri": [
+    "2 çeyrek üst üste GMV büyümesi %20'nin altında",
+    "Shopify ortaklığının sona ermesi ya da daralması"
+   ],
+   "kaynaklar": [
+    "https://www.sec.gov/Archives/edgar/data/0001835963/000117891326005272/exhibit_99-1.htm",
+    "https://finviz.com/news/424750/global-e-beats-on-profit-and-raises-again-but-acquired-growth-masks-cooling-organic-momentum"
+   ],
+   "olcutler": {
+    "piyasa_degeri_mn": 5684,
+    "gelir_ttm_mn": 1202,
+    "ev_satis_ttm": 4.5,
+    "gelir_bilesik_buyume": 0.3299,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.4534,
+    "faaliyet_marji_ttm": 0.1439,
+    "fcf_eksi_sbc_getirisi": 0.0417,
+    "sbc_gelir": 0.038,
+    "hisse_sayisi_artisi": 0.116,
+    "net_nakit_piyasa_degeri": 0.0567,
+    "analist_bu_yil_buyume": 0.3966,
+    "analist_gelecek_yil_buyume": 0.2946,
+    "iceriden_sahiplik": 0.3011,
+    "degisim_52h": -0.0223,
+    "zirve_52h": 45.275,
+    "dip_52h": 26.845
+   }
+  },
+  {
+   "sembol": "HNGE",
+   "ad": "Hinge Health, Inc.",
+   "tema": "Dijital kas-iskelet bakım platformu",
+   "kayit_kapanis": 105.72,
+   "tez": "Yazılım ekonomisiyle çalışan sağlık hizmeti: Q3 2026'da gelir +%52, brüt marj %87, serbest nakit akışı marjı %48; 2026 geliri ~880 milyon $ (+%50). İşverenlerin sağlık maliyetini düşürüyor; migren ve sindirim (GI) bakımına genişliyor. Kurucu (Daniel Perez) CEO.",
+   "riskler": "İşveren bütçeleri; rekabet (Sword Health); 2027 için analist beklentisi %27'ye yavaşlama; hisse 52 haftada +%135, beklenti yüksek.",
+   "olum_kriterleri": [
+    "2027 yıllık gelir büyümesi %20'nin altında",
+    "Serbest nakit akışı marjının %20'nin altına inmesi",
+    "Büyük müşteri ya da sağlık planı kaybı"
+   ],
+   "kaynaklar": [
+    "https://www.sec.gov/Archives/edgar/data/0001673743/000162828026068872/hnge-q32026112xex991.htm",
+    "https://www.fiercehealthcare.com/digital-health/hinge-health-posted-52-revenue-growth-q3-it-ramps-expansion-migraine-gi-care"
+   ],
+   "olcutler": {
+    "piyasa_degeri_mn": 8591,
+    "gelir_ttm_mn": 801,
+    "ev_satis_ttm": 10.4,
+    "gelir_bilesik_buyume": 0.4171,
+    "gelir_buyume_yil": 2,
+    "brut_marj": 0.7965,
+    "faaliyet_marji_ttm": 0.1874,
+    "fcf_eksi_sbc_getirisi": 0.0288,
+    "sbc_gelir": 0.0843,
+    "hisse_sayisi_artisi": -0.4062,
+    "net_nakit_piyasa_degeri": 0.0304,
+    "analist_bu_yil_buyume": 0.4935,
+    "analist_gelecek_yil_buyume": 0.2702,
+    "iceriden_sahiplik": 0.0427,
+    "degisim_52h": 1.3505,
+    "zirve_52h": 126.4,
+    "dip_52h": 30.08
+   }
+  },
+  {
+   "sembol": "TMDX",
+   "ad": "TransMedics Group, Inc.",
+   "tema": "Organ nakli platformu",
+   "kayit_kapanis": 85.25,
+   "tez": "Organı vücut dışında çalışır hâlde tutan OCS cihazı ve kendi uçak filosuyla lojistik: nakil sürecini uçtan uca yeniden kuran, kurucunun (Waleed Hassanein) yönettiği neredeyse tekel. Q3 2026'da gelir +%41 (organik %35), 2026 rehberi 764–774 milyon $. Kalp ve akciğer yeni denemeleri, böbrekte 2027 ikinci yarı ilk insan çalışmasıyla pazar genişliyor. Piyasa değeri ~3 milyar $.",
+   "riskler": "Uçak filosu sermaye yoğun; FDA deneme sonuçları; donör sayısı sınırı; 2025'te açığa satıcı raporu; hisse sayısı 3 yılda %37 arttı.",
+   "olum_kriterleri": [
+    "Yıllık gelir büyümesinin %15'in altına inmesi",
+    "ENHANCE Heart ya da DENOVO Lung denemesinde başarısızlık",
+    "2 çeyrek üst üste OCS vaka hacminde yıllık düşüş"
+   ],
+   "kaynaklar": [
+    "https://www.sec.gov/Archives/edgar/data/0001756262/000119312526449729/tmdx-ex99_1.htm"
+   ],
+   "olcutler": {
+    "piyasa_degeri_mn": 2961,
+    "gelir_ttm_mn": 728,
+    "ev_satis_ttm": 4.6,
+    "gelir_bilesik_buyume": 0.8642,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.5992,
+    "faaliyet_marji_ttm": 0.1188,
+    "fcf_eksi_sbc_getirisi": 0.0014,
+    "sbc_gelir": 0.0557,
+    "hisse_sayisi_artisi": 0.3716,
+    "net_nakit_piyasa_degeri": -0.1263,
+    "analist_bu_yil_buyume": 0.267,
+    "analist_gelecek_yil_buyume": 0.1748,
+    "iceriden_sahiplik": 0.037,
+    "degisim_52h": -0.2819,
+    "zirve_52h": 156.0,
+    "dip_52h": 60.105
+   }
+  },
+  {
+   "sembol": "ALNY",
+   "ad": "Alnylam Pharmaceuticals, Inc.",
+   "tema": "RNAi ilaç platformu",
+   "kayit_kapanis": 143.82,
+   "tez": "RNA girişimi (RNAi) platformunun öncüsü: Nvidia'nın CUDA'sı gibi tek teknoloji, çok pazar. Amvuttra ile ATTR kardiyomiyopati pazarında; boru hattı hipertansiyon, obezite ve nörolojiye uzanıyor (obezite ve HHT verileri Şubat 2027). İki rehber hayal kırıklığıyla hisse zirvesinden %70 düştü; değer ~4 kat satış.",
+   "riskler": "ATTR'de sert rekabet (Pfizer, BridgeBio, AstraZeneca/Ionis); 2027'den itibaren Medicare geri ödeme değişikliği; yeni hasta başlangıçları beklenenden yavaş; boru hattı gecikmeleri.",
+   "olum_kriterleri": [
+    "2027 TTR gelirinin 2026'nın altında kalması",
+    "Zilebesiran ya da nucresiran Faz 3 başarısızlığı"
+   ],
+   "kaynaklar": [
+    "https://www.fiercepharma.com/pharma/alnylam-shares-tank-27-amvuttra-disappoints-attr-outlook-cut-2026",
+    "https://www.trefis.com/articles/621578/what-just-happened-to-alnylam-stock/2026-10-30"
+   ],
+   "olcutler": {
+    "piyasa_degeri_mn": 19263,
+    "gelir_ttm_mn": 5013,
+    "ev_satis_ttm": 3.7,
+    "gelir_bilesik_buyume": 0.5298,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.8164,
+    "faaliyet_marji_ttm": 0.195,
+    "fcf_eksi_sbc_getirisi": 0.0231,
+    "sbc_gelir": 0.0613,
+    "hisse_sayisi_artisi": 0.1068,
+    "net_nakit_piyasa_degeri": 0.0306,
+    "analist_bu_yil_buyume": 0.4631,
+    "analist_gelecek_yil_buyume": 0.1744,
+    "iceriden_sahiplik": 0.002,
+    "degisim_52h": -0.6613,
+    "zirve_52h": 479.79,
+    "dip_52h": 143.4
+   }
+  },
+  {
+   "sembol": "KRYS",
+   "ad": "Krystal Biotech, Inc.",
+   "tema": "Tekrar dozlanabilir gen tedavisi platformu",
+   "kayit_kapanis": 308.89,
+   "tez": "HSV-1 vektörüyle cilde, göze ve akciğere tekrar uygulanabilen gen tedavisi. İlk ürün Vyjuvek kârlı (Q3 2026: 127,3 milyon $, +%30, brüt marj %94); 1,2 milyar $ nakit ve yatırım, 400 milyon $ geri alım; kurucular yönetimde. Platform yeni endikasyonlarda (kistik fibroz KB407, göz KB803) tutarsa çok katlanma potansiyeli var.",
+   "riskler": "Değerleme yüksek (~18 kat satış); boru hattı sonuçları 2027'ye kaydı; tek ürün.",
+   "olum_kriterleri": [
+    "KB407 ya da KB803'te başarısızlık",
+    "Vyjuvek yıllık büyümesinin %10'un altına inmesi"
+   ],
+   "kaynaklar": [
+    "https://www.sec.gov/Archives/edgar/data/0001711279/000171127926000072/exhibit991-3q26pressrelease.htm",
+    "https://finviz.com/news/413384/krystal-biotech-beats-on-vyjuvek-strength-and-adds-a-400-million-buyback-but-pipeline-timelines-slip-into-2027"
+   ],
+   "olcutler": {
+    "piyasa_degeri_mn": 9153,
+    "gelir_ttm_mn": 470,
+    "ev_satis_ttm": 17.6,
+    "gelir_bilesik_buyume": 1.7704,
+    "gelir_buyume_yil": 2,
+    "brut_marj": 0.9408,
+    "faaliyet_marji_ttm": 0.4841,
+    "fcf_eksi_sbc_getirisi": 0.0278,
+    "sbc_gelir": 0.118,
+    "hisse_sayisi_artisi": 0.1749,
+    "net_nakit_piyasa_degeri": 0.0987,
+    "analist_bu_yil_buyume": 0.2784,
+    "analist_gelecek_yil_buyume": 0.2762,
+    "iceriden_sahiplik": 0.1064,
+    "degisim_52h": 0.4896,
+    "zirve_52h": 382.535,
+    "dip_52h": 203.35
+   }
+  }
+ ],
+ "B_detay": [
+  {
+   "sembol": "AUPH",
+   "ad": "Aurinia Pharmaceuticals Inc",
+   "puan": 79.1,
+   "kayit_kapanis": 14.7,
+   "olcutler": {
+    "piyasa_degeri_mn": 1970,
+    "gelir_ttm_mn": 322,
+    "ev_satis_ttm": 4.8,
+    "gelir_bilesik_buyume": 0.283,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.8846,
+    "faaliyet_marji_ttm": 0.486,
+    "fcf_eksi_sbc_getirisi": 0.0823,
+    "sbc_gelir": 0.0461,
+    "hisse_sayisi_artisi": -0.0227,
+    "net_nakit_piyasa_degeri": 0.2172,
+    "analist_bu_yil_buyume": 0.1663,
+    "analist_gelecek_yil_buyume": 0.1683,
+    "iceriden_sahiplik": 0.0673,
+    "degisim_52h": -0.0504,
+    "zirve_52h": 19.25,
+    "dip_52h": 13.52
+   }
+  },
+  {
+   "sembol": "KRYS",
+   "ad": "Krystal Biotech, Inc.",
+   "puan": 72.8,
+   "kayit_kapanis": 308.89,
+   "olcutler": {
+    "piyasa_degeri_mn": 9153,
+    "gelir_ttm_mn": 470,
+    "ev_satis_ttm": 17.6,
+    "gelir_bilesik_buyume": 1.7704,
+    "gelir_buyume_yil": 2,
+    "brut_marj": 0.9408,
+    "faaliyet_marji_ttm": 0.4841,
+    "fcf_eksi_sbc_getirisi": 0.0278,
+    "sbc_gelir": 0.118,
+    "hisse_sayisi_artisi": 0.1749,
+    "net_nakit_piyasa_degeri": 0.0987,
+    "analist_bu_yil_buyume": 0.2784,
+    "analist_gelecek_yil_buyume": 0.2762,
+    "iceriden_sahiplik": 0.1064,
+    "degisim_52h": 0.4896,
+    "zirve_52h": 382.535,
+    "dip_52h": 203.35
+   }
+  },
+  {
+   "sembol": "HRMY",
+   "ad": "Harmony Biosciences Holdings, I",
+   "puan": 71.4,
+   "kayit_kapanis": 32.59,
+   "olcutler": {
+    "piyasa_degeri_mn": 1914,
+    "gelir_ttm_mn": 989,
+    "ev_satis_ttm": 1.3,
+    "gelir_bilesik_buyume": 0.2564,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.7716,
+    "faaliyet_marji_ttm": 0.2217,
+    "fcf_eksi_sbc_getirisi": 0.1489,
+    "sbc_gelir": 0.0384,
+    "hisse_sayisi_artisi": -0.0418,
+    "net_nakit_piyasa_degeri": 0.322,
+    "analist_bu_yil_buyume": 0.1831,
+    "analist_gelecek_yil_buyume": 0.1497,
+    "iceriden_sahiplik": 0.1151,
+    "degisim_52h": -0.0388,
+    "zirve_52h": 43.49,
+    "dip_52h": 25.902
+   }
+  },
+  {
+   "sembol": "LFTO",
+   "ad": "Liftoff Mobile, Inc.",
+   "puan": 69.6,
+   "kayit_kapanis": 22.86,
+   "olcutler": {
+    "piyasa_degeri_mn": 3873,
+    "gelir_ttm_mn": 857,
+    "ev_satis_ttm": 5.7,
+    "gelir_bilesik_buyume": 0.2033,
+    "gelir_buyume_yil": 2,
+    "brut_marj": 0.8515,
+    "faaliyet_marji_ttm": 0.3986,
+    "fcf_eksi_sbc_getirisi": 0.0529,
+    "sbc_gelir": 0.0518,
+    "hisse_sayisi_artisi": -0.0069,
+    "net_nakit_piyasa_degeri": -0.2637,
+    "analist_bu_yil_buyume": null,
+    "analist_gelecek_yil_buyume": 0.1926,
+    "iceriden_sahiplik": 0.1189,
+    "degisim_52h": -0.1684,
+    "zirve_52h": 30.1,
+    "dip_52h": 13.96
+   }
+  },
+  {
+   "sembol": "TAL",
+   "ad": "TAL Education Group",
+   "puan": 68.8,
+   "kayit_kapanis": 9.61,
+   "olcutler": {
+    "piyasa_degeri_mn": 5331,
+    "gelir_ttm_mn": 3326,
+    "ev_satis_ttm": 0.9,
+    "gelir_bilesik_buyume": 0.4343,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.5535,
+    "faaliyet_marji_ttm": 0.162,
+    "fcf_eksi_sbc_getirisi": 0.089,
+    "sbc_gelir": 0.013,
+    "hisse_sayisi_artisi": -0.1019,
+    "net_nakit_piyasa_degeri": 0.4374,
+    "analist_bu_yil_buyume": 0.1792,
+    "analist_gelecek_yil_buyume": 0.1597,
+    "iceriden_sahiplik": 0.0015,
+    "degisim_52h": -0.0841,
+    "zirve_52h": 13.23,
+    "dip_52h": 8.88
+   }
+  },
+  {
+   "sembol": "HALO",
+   "ad": "Halozyme Therapeutics, Inc.",
+   "puan": 66.2,
+   "kayit_kapanis": 91.35,
+   "olcutler": {
+    "piyasa_degeri_mn": 10415,
+    "gelir_ttm_mn": 1802,
+    "ev_satis_ttm": 7.0,
+    "gelir_bilesik_buyume": 0.2838,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.8362,
+    "faaliyet_marji_ttm": 0.5591,
+    "fcf_eksi_sbc_getirisi": 0.0509,
+    "sbc_gelir": 0.0376,
+    "hisse_sayisi_artisi": -0.1188,
+    "net_nakit_piyasa_degeri": -0.2117,
+    "analist_bu_yil_buyume": 0.3585,
+    "analist_gelecek_yil_buyume": 0.1524,
+    "iceriden_sahiplik": 0.0107,
+    "degisim_52h": 0.3227,
+    "zirve_52h": 134.0,
+    "dip_52h": 61.23
+   }
+  },
+  {
+   "sembol": "HNGE",
+   "ad": "Hinge Health, Inc.",
+   "puan": 65.4,
+   "kayit_kapanis": 105.72,
+   "olcutler": {
+    "piyasa_degeri_mn": 8591,
+    "gelir_ttm_mn": 801,
+    "ev_satis_ttm": 10.4,
+    "gelir_bilesik_buyume": 0.4171,
+    "gelir_buyume_yil": 2,
+    "brut_marj": 0.7965,
+    "faaliyet_marji_ttm": 0.1874,
+    "fcf_eksi_sbc_getirisi": 0.0288,
+    "sbc_gelir": 0.0843,
+    "hisse_sayisi_artisi": -0.4062,
+    "net_nakit_piyasa_degeri": 0.0304,
+    "analist_bu_yil_buyume": 0.4935,
+    "analist_gelecek_yil_buyume": 0.2702,
+    "iceriden_sahiplik": 0.0427,
+    "degisim_52h": 1.3505,
+    "zirve_52h": 126.4,
+    "dip_52h": 30.08
+   }
+  },
+  {
+   "sembol": "NBIX",
+   "ad": "Neurocrine Biosciences, Inc.",
+   "puan": 63.0,
+   "kayit_kapanis": 150.57,
+   "olcutler": {
+    "piyasa_degeri_mn": 15240,
+    "gelir_ttm_mn": 3702,
+    "ev_satis_ttm": 4.0,
+    "gelir_bilesik_buyume": 0.2432,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.9818,
+    "faaliyet_marji_ttm": 0.2458,
+    "fcf_eksi_sbc_getirisi": 0.0528,
+    "sbc_gelir": 0.0635,
+    "hisse_sayisi_artisi": 0.0364,
+    "net_nakit_piyasa_degeri": 0.0188,
+    "analist_bu_yil_buyume": 0.3962,
+    "analist_gelecek_yil_buyume": 0.1475,
+    "iceriden_sahiplik": 0.0108,
+    "degisim_52h": 0.1041,
+    "zirve_52h": 186.12,
+    "dip_52h": 122.14
+   }
+  },
+  {
+   "sembol": "EVER",
+   "ad": "EverQuote, Inc.",
+   "puan": 62.1,
+   "kayit_kapanis": 29.0,
+   "olcutler": {
+    "piyasa_degeri_mn": 1029,
+    "gelir_ttm_mn": 799,
+    "ev_satis_ttm": 1.0,
+    "gelir_bilesik_buyume": 0.1967,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.972,
+    "faaliyet_marji_ttm": 0.1119,
+    "fcf_eksi_sbc_getirisi": 0.0898,
+    "sbc_gelir": 0.0287,
+    "hisse_sayisi_artisi": 0.1942,
+    "net_nakit_piyasa_degeri": 0.2211,
+    "analist_bu_yil_buyume": 0.1877,
+    "analist_gelecek_yil_buyume": 0.1102,
+    "iceriden_sahiplik": 0.1298,
+    "degisim_52h": 0.1707,
+    "zirve_52h": 31.2,
+    "dip_52h": 13.88
+   }
+  },
+  {
+   "sembol": "GLBE",
+   "ad": "Global-E Online Ltd.",
+   "puan": 62.0,
+   "kayit_kapanis": 33.84,
+   "olcutler": {
+    "piyasa_degeri_mn": 5684,
+    "gelir_ttm_mn": 1202,
+    "ev_satis_ttm": 4.5,
+    "gelir_bilesik_buyume": 0.3299,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.4534,
+    "faaliyet_marji_ttm": 0.1439,
+    "fcf_eksi_sbc_getirisi": 0.0417,
+    "sbc_gelir": 0.038,
+    "hisse_sayisi_artisi": 0.116,
+    "net_nakit_piyasa_degeri": 0.0567,
+    "analist_bu_yil_buyume": 0.3966,
+    "analist_gelecek_yil_buyume": 0.2946,
+    "iceriden_sahiplik": 0.3011,
+    "degisim_52h": -0.0223,
+    "zirve_52h": 45.275,
+    "dip_52h": 26.845
+   }
+  },
+  {
+   "sembol": "OPRA",
+   "ad": "Opera Limited",
+   "puan": 60.1,
+   "kayit_kapanis": 12.86,
+   "olcutler": {
+    "piyasa_degeri_mn": 1143,
+    "gelir_ttm_mn": 714,
+    "ev_satis_ttm": 1.4,
+    "gelir_bilesik_buyume": 0.2292,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.6414,
+    "faaliyet_marji_ttm": 0.1671,
+    "fcf_eksi_sbc_getirisi": 0.086,
+    "sbc_gelir": 0.0382,
+    "hisse_sayisi_artisi": -0.1756,
+    "net_nakit_piyasa_degeri": 0.12,
+    "analist_bu_yil_buyume": 0.2025,
+    "analist_gelecek_yil_buyume": 0.1471,
+    "iceriden_sahiplik": 0.0795,
+    "degisim_52h": 0.0439,
+    "zirve_52h": 20.78,
+    "dip_52h": 11.71
+   }
+  },
+  {
+   "sembol": "ALNY",
+   "ad": "Alnylam Pharmaceuticals, Inc.",
+   "puan": 57.5,
+   "kayit_kapanis": 143.82,
+   "olcutler": {
+    "piyasa_degeri_mn": 19263,
+    "gelir_ttm_mn": 5013,
+    "ev_satis_ttm": 3.7,
+    "gelir_bilesik_buyume": 0.5298,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.8164,
+    "faaliyet_marji_ttm": 0.195,
+    "fcf_eksi_sbc_getirisi": 0.0231,
+    "sbc_gelir": 0.0613,
+    "hisse_sayisi_artisi": 0.1068,
+    "net_nakit_piyasa_degeri": 0.0306,
+    "analist_bu_yil_buyume": 0.4631,
+    "analist_gelecek_yil_buyume": 0.1744,
+    "iceriden_sahiplik": 0.002,
+    "degisim_52h": -0.6613,
+    "zirve_52h": 479.79,
+    "dip_52h": 143.4
+   }
+  },
+  {
+   "sembol": "YOU",
+   "ad": "Clear Secure, Inc.",
+   "puan": 57.4,
+   "kayit_kapanis": 52.48,
+   "olcutler": {
+    "piyasa_degeri_mn": 7918,
+    "gelir_ttm_mn": 1064,
+    "ev_satis_ttm": 6.9,
+    "gelir_bilesik_buyume": 0.2722,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.6442,
+    "faaliyet_marji_ttm": 0.2647,
+    "fcf_eksi_sbc_getirisi": 0.0519,
+    "sbc_gelir": 0.0445,
+    "hisse_sayisi_artisi": 0.1909,
+    "net_nakit_piyasa_degeri": 0.0662,
+    "analist_bu_yil_buyume": 0.2488,
+    "analist_gelecek_yil_buyume": 0.1424,
+    "iceriden_sahiplik": 0.0756,
+    "degisim_52h": 0.5325,
+    "zirve_52h": 69.07,
+    "dip_52h": 30.98
+   }
+  },
+  {
+   "sembol": "DUOL",
+   "ad": "Duolingo, Inc.",
+   "puan": 54.7,
+   "kayit_kapanis": 145.02,
+   "olcutler": {
+    "piyasa_degeri_mn": 6848,
+    "gelir_ttm_mn": 1182,
+    "ev_satis_ttm": 4.7,
+    "gelir_bilesik_buyume": 0.4108,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.7223,
+    "faaliyet_marji_ttm": 0.1236,
+    "fcf_eksi_sbc_getirisi": 0.0349,
+    "sbc_gelir": 0.1325,
+    "hisse_sayisi_artisi": 0.1819,
+    "net_nakit_piyasa_degeri": 0.1883,
+    "analist_bu_yil_buyume": 0.1776,
+    "analist_gelecek_yil_buyume": 0.1413,
+    "iceriden_sahiplik": 0.0141,
+    "degisim_52h": -0.1354,
+    "zirve_52h": 213.37,
+    "dip_52h": 87.89
+   }
+  },
+  {
+   "sembol": "RMBS",
+   "ad": "Rambus, Inc.",
+   "puan": 53.6,
+   "kayit_kapanis": 66.35,
+   "olcutler": {
+    "piyasa_degeri_mn": 7106,
+    "gelir_ttm_mn": 796,
+    "ev_satis_ttm": 8.0,
+    "gelir_bilesik_buyume": 0.1588,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.7959,
+    "faaliyet_marji_ttm": 0.3673,
+    "fcf_eksi_sbc_getirisi": 0.0357,
+    "sbc_gelir": 0.074,
+    "hisse_sayisi_artisi": -0.0022,
+    "net_nakit_piyasa_degeri": 0.1065,
+    "analist_bu_yil_buyume": 0.1883,
+    "analist_gelecek_yil_buyume": 0.205,
+    "iceriden_sahiplik": 0.0078,
+    "degisim_52h": -0.1357,
+    "zirve_52h": 174.1,
+    "dip_52h": 65.63
+   }
+  },
+  {
+   "sembol": "MNDY",
+   "ad": "monday.com Ltd.",
+   "puan": 53.2,
+   "kayit_kapanis": 72.16,
+   "olcutler": {
+    "piyasa_degeri_mn": 3051,
+    "gelir_ttm_mn": 1427,
+    "ev_satis_ttm": 1.5,
+    "gelir_bilesik_buyume": 0.3339,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.892,
+    "faaliyet_marji_ttm": 0.0583,
+    "fcf_eksi_sbc_getirisi": 0.0262,
+    "sbc_gelir": 0.0983,
+    "hisse_sayisi_artisi": 0.159,
+    "net_nakit_piyasa_degeri": 0.2971,
+    "analist_bu_yil_buyume": 0.1969,
+    "analist_gelecek_yil_buyume": 0.1285,
+    "iceriden_sahiplik": 0.1597,
+    "degisim_52h": -0.524,
+    "zirve_52h": 164.49,
+    "dip_52h": 57.5
+   }
+  },
+  {
+   "sembol": "KNSA",
+   "ad": "Kiniksa Pharmaceuticals Interna",
+   "puan": 52.8,
+   "kayit_kapanis": 93.895,
+   "olcutler": {
+    "piyasa_degeri_mn": 7377,
+    "gelir_ttm_mn": 946,
+    "ev_satis_ttm": 7.2,
+    "gelir_bilesik_buyume": 0.4545,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.5466,
+    "faaliyet_marji_ttm": 0.1379,
+    "fcf_eksi_sbc_getirisi": 0.0206,
+    "sbc_gelir": 0.0476,
+    "hisse_sayisi_artisi": 0.1215,
+    "net_nakit_piyasa_degeri": 0.076,
+    "analist_bu_yil_buyume": 0.548,
+    "analist_gelecek_yil_buyume": 0.285,
+    "iceriden_sahiplik": 0.0355,
+    "degisim_52h": 1.2495,
+    "zirve_52h": 99.31,
+    "dip_52h": 37.02
+   }
+  },
+  {
+   "sembol": "CORT",
+   "ad": "Corcept Therapeutics Incorporat",
+   "puan": 51.8,
+   "kayit_kapanis": 63.62,
+   "olcutler": {
+    "piyasa_degeri_mn": 6972,
+    "gelir_ttm_mn": 964,
+    "ev_satis_ttm": 6.9,
+    "gelir_bilesik_buyume": 0.2374,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.983,
+    "faaliyet_marji_ttm": 0.1151,
+    "fcf_eksi_sbc_getirisi": 0.0132,
+    "sbc_gelir": 0.1065,
+    "hisse_sayisi_artisi": 0.0347,
+    "net_nakit_piyasa_degeri": 0.0519,
+    "analist_bu_yil_buyume": 0.5209,
+    "analist_gelecek_yil_buyume": 0.4703,
+    "iceriden_sahiplik": 0.1132,
+    "degisim_52h": -0.1593,
+    "zirve_52h": 126.38,
+    "dip_52h": 28.66
+   }
+  },
+  {
+   "sembol": "APPF",
+   "ad": "AppFolio, Inc.",
+   "puan": 51.3,
+   "kayit_kapanis": 203.49,
+   "olcutler": {
+    "piyasa_degeri_mn": 7215,
+    "gelir_ttm_mn": 1087,
+    "ev_satis_ttm": 6.4,
+    "gelir_bilesik_buyume": 0.2631,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.6368,
+    "faaliyet_marji_ttm": 0.1883,
+    "fcf_eksi_sbc_getirisi": 0.0282,
+    "sbc_gelir": 0.0684,
+    "hisse_sayisi_artisi": 0.0376,
+    "net_nakit_piyasa_degeri": 0.0385,
+    "analist_bu_yil_buyume": 0.1837,
+    "analist_gelecek_yil_buyume": 0.171,
+    "iceriden_sahiplik": 0.0391,
+    "degisim_52h": -0.1064,
+    "zirve_52h": 241.49,
+    "dip_52h": 142.56
+   }
+  },
+  {
+   "sembol": "FRSH",
+   "ad": "Freshworks Inc.",
+   "puan": 48.9,
+   "kayit_kapanis": 12.06,
+   "olcutler": {
+    "piyasa_degeri_mn": 3164,
+    "gelir_ttm_mn": 934,
+    "ev_satis_ttm": 2.7,
+    "gelir_bilesik_buyume": 0.1898,
+    "gelir_buyume_yil": 3,
+    "brut_marj": 0.8496,
+    "faaliyet_marji_ttm": 0.0779,
+    "fcf_eksi_sbc_getirisi": 0.0374,
+    "sbc_gelir": 0.1262,
+    "hisse_sayisi_artisi": 0.0323,
+    "net_nakit_piyasa_degeri": 0.2098,
+    "analist_bu_yil_buyume": 0.151,
+    "analist_gelecek_yil_buyume": 0.1396,
+    "iceriden_sahiplik": 0.081,
+    "degisim_52h": 0.0371,
+    "zirve_52h": 15.51,
+    "dip_52h": 6.79
+   }
+  }
+ ],
+ "hipotezler": [
+  {
+   "id": "H1",
+   "ana": true,
+   "metin": "36. ayda (20.11.2029 kapanışı) A sepetinin eşit ağırlıklı toplam getirisi IWM'in toplam getirisinden yüksek olur."
+  },
+  {
+   "id": "H2",
+   "metin": "36. ayda A sepeti B sepetini geçer (nitel yargının mekanik puanlamaya katkısı)."
+  },
+  {
+   "id": "H3",
+   "metin": "36. ayda B sepeti C evrenini geçer (puanlamanın ekranın kendisine katkısı)."
+  },
+  {
+   "id": "H4",
+   "metin": "36. ayda A sepetinde 3 kat (≥ +%200) yapan hisselerin oranı C evrenindeki orandan yüksek olur."
+  }
+ ],
+ "degerlendirme": {
+  "yontem": "Eşit ağırlık, 20.11.2026 kapanışında al-tut, yeniden dengeleme yok. Getiri: aynı temettü düzeltmeli seride değerlendirme günü / kayıt günü − 1. Ölüm kriterleri tezin doğruluğunu ölçer, getiri hesabını değiştirmez (sonradan bilgiyle satış yok).",
+  "kote_olmayan_hisse": "Satın alma ya da borsadan çıkma: son işlem fiyatı (ya da nakit satın alma bedeli) ile kapanır ve sonrası %0 sayılır; iflas: −%100.",
+  "ara_kontroller": [
+   "2027-05-20",
+   "2027-11-20",
+   "2028-11-20"
+  ],
+  "nihai": "2029-11-20",
+  "ara_kontrol_kurali": "Ara kontrollerde hüküm verilmez; yalnızca durum ve tetiklenen ölüm kriterleri raporlanır.",
+  "izleme": "GitHub yvzkl/bist-veri ana dalında 'Temel tarama' iş akışı her ayın 20'sinde sonuc/uzun-vade-izleme-UV-2026-11-21.json dosyasını günceller."
+ },
+ "durust_notlar": [
+  "Tek sepet tek gözlemdir: 10 hisse ve 3 yılda şans payı büyüktür. A'nın IWM'i geçmesi tek başına beceri kanıtı sayılmaz, geçememesi de becerisizlik kanıtı sayılmaz. Anlamlı kanıt için her 6 ayda yeni bir kohort kaydı gerekir.",
+  "A sepetinin dört şirketi yapay zekâ altyapı döngüsüne doğrudan bağlı, Reddit dolaylı olarak bağlı; döngü dönerse birlikte düşerler. Bu bilinçli bir risktir.",
+  "Temel veriler denetlenmiş tablolar değil, Yahoo özetleridir; bazı alanlar hatalı olabilir (ör. Wise'ta müşteri fonları serbest nakit akışını şişiriyor: kapıyla dışlandı). Son çeyrek bilgileri web kaynaklarından okundu; yönetimlerle görüşme ya da saha araştırması yok.",
+  "Haziran 2026 sonrasını eğitimimden değil, yalnızca web aramasından biliyorum.",
+  "Çıkar çatışması: Claude bir Anthropic modelidir ve 2026 yazılım satışının tetikleyicilerinden biri Anthropic ürünleriydi. Klasik koltuk bazlı yazılım şirketlerine karşı önyargım olabilir. B sepeti bu şirketleri (MNDY, FRSH, APPF, DUOL) mekanik olarak içeriyor, A içermiyor; A ile B farkı bu önyargıyı da sınar.",
+  "BIST bu kayda girmedi: Yahoo'nun BIST temel verisi bu iş için güvenilir değil ve BIST 100'de bu profile uyan şirket neredeyse yok (bkz. BIST notu)."
+ ],
+ "bist_notu": "BIST 100 için Yahoo temel verisi bu iş için güvenilir değil: 13 şirkette raporlama para birimi boş; THY ve Enka dolar, TAV avro ile raporluyor; enflasyon muhasebesi (TMS 29) dönemler arası büyüme oranlarını karıştırıyor; bazı oranlar karşılaştırılamaz (ör. Alarko Holding gelir büyümesi +%733). BIST 100'de yüksek marjlı teknoloji platformu profiline en yakın şirket ASELSAN (savunma elektroniği) ve 52 haftada zaten +%86. Doğru yol, KAP mali tablolarıyla tüm BIST'i taramak; bu ayrı bir iştir.",
+ "fiyatlar": {
+  "AAMI": {
+   "kapanis": 80.32,
+   "duz_kapanis": 80.32
+  },
+  "AAUC": {
+   "kapanis": 17.82,
+   "duz_kapanis": 17.82
+  },
+  "ABUS": {
+   "kapanis": 4.02,
+   "duz_kapanis": 4.02
+  },
+  "AD": {
+   "kapanis": 27.28,
+   "duz_kapanis": 27.28
+  },
+  "ADC": {
+   "kapanis": 70.925,
+   "duz_kapanis": 70.925
+  },
+  "ADEA": {
+   "kapanis": 12.85,
+   "duz_kapanis": 12.85
+  },
+  "ADPT": {
+   "kapanis": 27.93,
+   "duz_kapanis": 27.93
+  },
+  "AFRM": {
+   "kapanis": 54.0,
+   "duz_kapanis": 54.0
+  },
+  "AG": {
+   "kapanis": 10.88,
+   "duz_kapanis": 10.88
+  },
+  "AGI": {
+   "kapanis": 24.89,
+   "duz_kapanis": 24.89
+  },
+  "AII": {
+   "kapanis": 28.57,
+   "duz_kapanis": 28.57
+  },
+  "AIP": {
+   "kapanis": 16.5,
+   "duz_kapanis": 16.5
+  },
+  "ALAB": {
+   "kapanis": 180.35,
+   "duz_kapanis": 180.35
+  },
+  "ALGM": {
+   "kapanis": 25.56,
+   "duz_kapanis": 25.56
+  },
+  "ALKS": {
+   "kapanis": 44.94,
+   "duz_kapanis": 44.94
+  },
+  "ALKT": {
+   "kapanis": 12.51,
+   "duz_kapanis": 12.51
+  },
+  "ALNY": {
+   "kapanis": 143.82,
+   "duz_kapanis": 143.82
+  },
+  "AMBA": {
+   "kapanis": 53.07,
+   "duz_kapanis": 53.07
+  },
+  "AMPL": {
+   "kapanis": 16.2,
+   "duz_kapanis": 16.2
+  },
+  "ANGX": {
+   "kapanis": 3.835,
+   "duz_kapanis": 3.835
+  },
+  "ANIP": {
+   "kapanis": 68.55,
+   "duz_kapanis": 68.55
+  },
+  "APPF": {
+   "kapanis": 203.49,
+   "duz_kapanis": 203.49
+  },
+  "APPN": {
+   "kapanis": 51.79,
+   "duz_kapanis": 51.79
+  },
+  "APPS": {
+   "kapanis": 5.74,
+   "duz_kapanis": 5.74
+  },
+  "AR": {
+   "kapanis": 35.674,
+   "duz_kapanis": 35.674
+  },
+  "ARIS": {
+   "kapanis": 12.045,
+   "duz_kapanis": 12.045
+  },
+  "ARLO": {
+   "kapanis": 11.845,
+   "duz_kapanis": 11.845
+  },
+  "ARQT": {
+   "kapanis": 26.36,
+   "duz_kapanis": 26.36
+  },
+  "AS": {
+   "kapanis": 28.27,
+   "duz_kapanis": 28.27
+  },
+  "ASC": {
+   "kapanis": 17.08,
+   "duz_kapanis": 17.08
+  },
+  "ASM": {
+   "kapanis": 3.405,
+   "duz_kapanis": 3.405
+  },
+  "ASND": {
+   "kapanis": 252.73,
+   "duz_kapanis": 252.73
+  },
+  "ATAT": {
+   "kapanis": 38.05,
+   "duz_kapanis": 38.05
+  },
+  "ATEC": {
+   "kapanis": 6.68,
+   "duz_kapanis": 6.68
+  },
+  "AU": {
+   "kapanis": 72.485,
+   "duz_kapanis": 72.485
+  },
+  "AUGO": {
+   "kapanis": 57.05,
+   "duz_kapanis": 57.05
+  },
+  "AUPH": {
+   "kapanis": 14.7,
+   "duz_kapanis": 14.7
+  },
+  "AVPT": {
+   "kapanis": 16.49,
+   "duz_kapanis": 16.49
+  },
+  "AXGN": {
+   "kapanis": 55.75,
+   "duz_kapanis": 55.75
+  },
+  "AXON": {
+   "kapanis": 291.14,
+   "duz_kapanis": 291.14
+  },
+  "AXTI": {
+   "kapanis": 30.57,
+   "duz_kapanis": 30.57
+  },
+  "AYA": {
+   "kapanis": 17.38,
+   "duz_kapanis": 17.38
+  },
+  "BCRX": {
+   "kapanis": 7.22,
+   "duz_kapanis": 7.22
+  },
+  "BILL": {
+   "kapanis": 61.45,
+   "duz_kapanis": 61.45
+  },
+  "BLLN": {
+   "kapanis": 89.92,
+   "duz_kapanis": 89.92
+  },
+  "BLSH": {
+   "kapanis": 19.075,
+   "duz_kapanis": 19.075
+  },
+  "BLZE": {
+   "kapanis": 6.44,
+   "duz_kapanis": 6.44
+  },
+  "BRO": {
+   "kapanis": 73.07,
+   "duz_kapanis": 73.07
+  },
+  "BRZE": {
+   "kapanis": 46.28,
+   "duz_kapanis": 46.28
+  },
+  "BTG": {
+   "kapanis": 4.115,
+   "duz_kapanis": 4.115
+  },
+  "BVN": {
+   "kapanis": 19.57,
+   "duz_kapanis": 19.57
+  },
+  "CALX": {
+   "kapanis": 33.02,
+   "duz_kapanis": 33.02
+  },
+  "CALY": {
+   "kapanis": 15.97,
+   "duz_kapanis": 15.97
+  },
+  "CARG": {
+   "kapanis": 31.8,
+   "duz_kapanis": 31.8
+  },
+  "CDE": {
+   "kapanis": 10.675,
+   "duz_kapanis": 10.675
+  },
+  "CDNA": {
+   "kapanis": 70.0,
+   "duz_kapanis": 70.0
+  },
+  "CDRE": {
+   "kapanis": 29.44,
+   "duz_kapanis": 29.44
+  },
+  "CELH": {
+   "kapanis": 28.46,
+   "duz_kapanis": 28.46
+  },
+  "CF": {
+   "kapanis": 115.53,
+   "duz_kapanis": 115.53
+  },
+  "CGNX": {
+   "kapanis": 44.36,
+   "duz_kapanis": 44.36
+  },
+  "CHRD": {
+   "kapanis": 136.48,
+   "duz_kapanis": 136.48
+  },
+  "CHYM": {
+   "kapanis": 30.34,
+   "duz_kapanis": 30.34
+  },
+  "CIEN": {
+   "kapanis": 234.37,
+   "duz_kapanis": 234.37
+  },
+  "CLBT": {
+   "kapanis": 10.77,
+   "duz_kapanis": 10.77
+  },
+  "COHU": {
+   "kapanis": 37.31,
+   "duz_kapanis": 37.31
+  },
+  "CORT": {
+   "kapanis": 63.62,
+   "duz_kapanis": 63.62
+  },
+  "COUR": {
+   "kapanis": 3.425,
+   "duz_kapanis": 3.425
+  },
+  "CPAY": {
+   "kapanis": 429.84,
+   "duz_kapanis": 429.84
+  },
+  "CR": {
+   "kapanis": 202.15,
+   "duz_kapanis": 202.15
+  },
+  "CRDO": {
+   "kapanis": 99.86,
+   "duz_kapanis": 99.86
+  },
+  "CRGY": {
+   "kapanis": 10.58,
+   "duz_kapanis": 10.58
+  },
+  "CRMD": {
+   "kapanis": 5.27,
+   "duz_kapanis": 5.27
+  },
+  "CRML": {
+   "kapanis": 3.02,
+   "duz_kapanis": 3.02
+  },
+  "CRON": {
+   "kapanis": 3.04,
+   "duz_kapanis": 3.04
+  },
+  "CSGP": {
+   "kapanis": 29.61,
+   "duz_kapanis": 29.61
+  },
+  "CTO": {
+   "kapanis": 19.655,
+   "duz_kapanis": 19.655
+  },
+  "CURB": {
+   "kapanis": 28.49,
+   "duz_kapanis": 28.49
+  },
+  "CWEN": {
+   "kapanis": 28.535,
+   "duz_kapanis": 28.535
+  },
+  "CXT": {
+   "kapanis": 51.15,
+   "duz_kapanis": 51.15
+  },
+  "DAVE": {
+   "kapanis": 228.39,
+   "duz_kapanis": 228.39
+  },
+  "DCTH": {
+   "kapanis": 18.79,
+   "duz_kapanis": 18.79
+  },
+  "DGII": {
+   "kapanis": 51.1,
+   "duz_kapanis": 51.1
+  },
+  "DJT": {
+   "kapanis": 3.73,
+   "duz_kapanis": 3.73
+  },
+  "DKNG": {
+   "kapanis": 15.8,
+   "duz_kapanis": 15.8
+  },
+  "DOCN": {
+   "kapanis": 66.77,
+   "duz_kapanis": 66.77
+  },
+  "DRD": {
+   "kapanis": 20.01,
+   "duz_kapanis": 20.01
+  },
+  "DRVN": {
+   "kapanis": 10.69,
+   "duz_kapanis": 10.69
+  },
+  "DT": {
+   "kapanis": 43.5,
+   "duz_kapanis": 43.5
+  },
+  "DUOL": {
+   "kapanis": 145.02,
+   "duz_kapanis": 145.02
+  },
+  "EDU": {
+   "kapanis": 51.04,
+   "duz_kapanis": 51.04
+  },
+  "ELF": {
+   "kapanis": 103.45,
+   "duz_kapanis": 103.45
+  },
+  "EPRT": {
+   "kapanis": 28.005,
+   "duz_kapanis": 28.005
+  },
+  "EQT": {
+   "kapanis": 48.9,
+   "duz_kapanis": 48.9
+  },
+  "EQX": {
+   "kapanis": 8.38,
+   "duz_kapanis": 8.38
+  },
+  "ERO": {
+   "kapanis": 21.485,
+   "duz_kapanis": 21.485
+  },
+  "ESE": {
+   "kapanis": 210.77,
+   "duz_kapanis": 210.77
+  },
+  "ESTC": {
+   "kapanis": 75.17,
+   "duz_kapanis": 75.17
+  },
+  "ETON": {
+   "kapanis": 60.85,
+   "duz_kapanis": 60.85
+  },
+  "EVER": {
+   "kapanis": 29.0,
+   "duz_kapanis": 29.0
+  },
+  "EVLV": {
+   "kapanis": 3.795,
+   "duz_kapanis": 3.795
+  },
+  "EVTC": {
+   "kapanis": 29.81,
+   "duz_kapanis": 29.81
+  },
+  "EXE": {
+   "kapanis": 81.27,
+   "duz_kapanis": 81.27
+  },
+  "EXK": {
+   "kapanis": 5.67,
+   "duz_kapanis": 5.67
+  },
+  "FA": {
+   "kapanis": 21.07,
+   "duz_kapanis": 21.07
+  },
+  "FCFS": {
+   "kapanis": 165.7,
+   "duz_kapanis": 165.7
+  },
+  "FDUS": {
+   "kapanis": 18.21,
+   "duz_kapanis": 18.21
+  },
+  "FENC": {
+   "kapanis": 13.09,
+   "duz_kapanis": 13.09
+  },
+  "FICO": {
+   "kapanis": 694.23,
+   "duz_kapanis": 694.23
+  },
+  "FIG": {
+   "kapanis": 15.79,
+   "duz_kapanis": 15.79
+  },
+  "FIGS": {
+   "kapanis": 20.06,
+   "duz_kapanis": 20.06
+  },
+  "FIP": {
+   "kapanis": 3.31,
+   "duz_kapanis": 3.31
+  },
+  "FLOC": {
+   "kapanis": 18.945,
+   "duz_kapanis": 18.945
+  },
+  "FLYW": {
+   "kapanis": 20.93,
+   "duz_kapanis": 20.93
+  },
+  "FORM": {
+   "kapanis": 73.02,
+   "duz_kapanis": 73.02
+  },
+  "FRO": {
+   "kapanis": 45.19,
+   "duz_kapanis": 45.19
+  },
+  "FROG": {
+   "kapanis": 100.965,
+   "duz_kapanis": 100.965
+  },
+  "FRSH": {
+   "kapanis": 12.06,
+   "duz_kapanis": 12.06
+  },
+  "FSLY": {
+   "kapanis": 14.91,
+   "duz_kapanis": 14.91
+  },
+  "FSM": {
+   "kapanis": 7.3278,
+   "duz_kapanis": 7.3278
+  },
+  "GAB": {
+   "kapanis": 4.99,
+   "duz_kapanis": 4.99
+  },
+  "GEN": {
+   "kapanis": 29.19,
+   "duz_kapanis": 29.19
+  },
+  "GFI": {
+   "kapanis": 31.6,
+   "duz_kapanis": 31.6
+  },
+  "GKOS": {
+   "kapanis": 237.69,
+   "duz_kapanis": 237.69
+  },
+  "GLBE": {
+   "kapanis": 33.84,
+   "duz_kapanis": 33.84
+  },
+  "GLNG": {
+   "kapanis": 39.08,
+   "duz_kapanis": 39.08
+  },
+  "GPN": {
+   "kapanis": 91.84,
+   "duz_kapanis": 91.84
+  },
+  "GRND": {
+   "kapanis": 13.43,
+   "duz_kapanis": 13.43
+  },
+  "GSHD": {
+   "kapanis": 46.64,
+   "duz_kapanis": 46.64
+  },
+  "GTLB": {
+   "kapanis": 43.17,
+   "duz_kapanis": 43.17
+  },
+  "GWRE": {
+   "kapanis": 133.55,
+   "duz_kapanis": 133.55
+  },
+  "HALO": {
+   "kapanis": 91.35,
+   "duz_kapanis": 91.35
+  },
+  "HAS": {
+   "kapanis": 112.41,
+   "duz_kapanis": 112.41
+  },
+  "HBM": {
+   "kapanis": 16.19,
+   "duz_kapanis": 16.19
+  },
+  "HEI-A": {
+   "kapanis": 239.74,
+   "duz_kapanis": 239.74
+  },
+  "HIMS": {
+   "kapanis": 14.61,
+   "duz_kapanis": 14.61
+  },
+  "HIPO": {
+   "kapanis": 35.63,
+   "duz_kapanis": 35.63
+  },
+  "HL": {
+   "kapanis": 10.505,
+   "duz_kapanis": 10.505
+  },
+  "HLIT": {
+   "kapanis": 9.41,
+   "duz_kapanis": 9.41
+  },
+  "HLNE": {
+   "kapanis": 81.07,
+   "duz_kapanis": 81.07
+  },
+  "HMY": {
+   "kapanis": 12.825,
+   "duz_kapanis": 12.825
+  },
+  "HNGE": {
+   "kapanis": 105.72,
+   "duz_kapanis": 105.72
+  },
+  "HNI": {
+   "kapanis": 47.87,
+   "duz_kapanis": 47.87
+  },
+  "HOS": {
+   "kapanis": 4.935,
+   "duz_kapanis": 4.935
+  },
+  "HRMY": {
+   "kapanis": 32.59,
+   "duz_kapanis": 32.59
+  },
+  "HSHP": {
+   "kapanis": 14.59,
+   "duz_kapanis": 14.59
+  },
+  "HUBS": {
+   "kapanis": 193.83,
+   "duz_kapanis": 193.83
+  },
+  "IA": {
+   "kapanis": 17.36,
+   "duz_kapanis": 17.36
+  },
+  "IAG": {
+   "kapanis": 14.435,
+   "duz_kapanis": 14.435
+  },
+  "IHS": {
+   "kapanis": 8.445,
+   "duz_kapanis": 8.445
+  },
+  "IMAX": {
+   "kapanis": 46.12,
+   "duz_kapanis": 46.12
+  },
+  "INCY": {
+   "kapanis": 114.625,
+   "duz_kapanis": 114.625
+  },
+  "INNV": {
+   "kapanis": 9.16,
+   "duz_kapanis": 9.16
+  },
+  "INOD": {
+   "kapanis": 28.12,
+   "duz_kapanis": 28.12
+  },
+  "INSW": {
+   "kapanis": 97.105,
+   "duz_kapanis": 97.105
+  },
+  "IOT": {
+   "kapanis": 37.51,
+   "duz_kapanis": 37.51
+  },
+  "IRS": {
+   "kapanis": 10.665,
+   "duz_kapanis": 10.665
+  },
+  "IRTC": {
+   "kapanis": 94.72,
+   "duz_kapanis": 94.72
+  },
+  "IRWD": {
+   "kapanis": 4.7,
+   "duz_kapanis": 4.7
+  },
+  "IWM": {
+   "kapanis": 256.68,
+   "duz_kapanis": 256.68
+  },
+  "IX": {
+   "kapanis": 32.05,
+   "duz_kapanis": 32.05
+  },
+  "JXN": {
+   "kapanis": 127.055,
+   "duz_kapanis": 127.055
+  },
+  "KGC": {
+   "kapanis": 17.325,
+   "duz_kapanis": 17.325
+  },
+  "KIDS": {
+   "kapanis": 31.74,
+   "duz_kapanis": 31.74
+  },
+  "KLIC": {
+   "kapanis": 54.71,
+   "duz_kapanis": 54.71
+  },
+  "KN": {
+   "kapanis": 30.935,
+   "duz_kapanis": 30.935
+  },
+  "KNSA": {
+   "kapanis": 93.895,
+   "duz_kapanis": 93.895
+  },
+  "KNTK": {
+   "kapanis": 52.23,
+   "duz_kapanis": 52.23
+  },
+  "KRP": {
+   "kapanis": 14.075,
+   "duz_kapanis": 14.075
+  },
+  "KRYS": {
+   "kapanis": 308.89,
+   "duz_kapanis": 308.89
+  },
+  "KTB": {
+   "kapanis": 79.61,
+   "duz_kapanis": 79.61
+  },
+  "KVYO": {
+   "kapanis": 22.245,
+   "duz_kapanis": 22.245
+  },
+  "KYIV": {
+   "kapanis": 10.83,
+   "duz_kapanis": 10.83
+  },
+  "LB": {
+   "kapanis": 70.51,
+   "duz_kapanis": 70.51
+  },
+  "LFTO": {
+   "kapanis": 22.86,
+   "duz_kapanis": 22.86
+  },
+  "LFUS": {
+   "kapanis": 357.58,
+   "duz_kapanis": 357.58
+  },
+  "LIF": {
+   "kapanis": 39.51,
+   "duz_kapanis": 39.51
+  },
+  "LIFE": {
+   "kapanis": 31.22,
+   "duz_kapanis": 31.22
+  },
+  "LINC": {
+   "kapanis": 20.12,
+   "duz_kapanis": 20.12
+  },
+  "LIND": {
+   "kapanis": 30.26,
+   "duz_kapanis": 30.26
+  },
+  "LION": {
+   "kapanis": 13.13,
+   "duz_kapanis": 13.13
+  },
+  "LKFT": {
+   "kapanis": 33.31,
+   "duz_kapanis": 33.31
+  },
+  "LMND": {
+   "kapanis": 35.475,
+   "duz_kapanis": 35.475
+  },
+  "LOAR": {
+   "kapanis": 63.63,
+   "duz_kapanis": 63.63
+  },
+  "LPG": {
+   "kapanis": 44.195,
+   "duz_kapanis": 44.195
+  },
+  "LQDA": {
+   "kapanis": 54.43,
+   "duz_kapanis": 54.43
+  },
+  "LSCC": {
+   "kapanis": 98.31,
+   "duz_kapanis": 98.31
+  },
+  "LTC": {
+   "kapanis": 42.23,
+   "duz_kapanis": 42.23
+  },
+  "LUXE": {
+   "kapanis": 10.38,
+   "duz_kapanis": 10.38
+  },
+  "MCHP": {
+   "kapanis": 55.44,
+   "duz_kapanis": 55.44
+  },
+  "MDB": {
+   "kapanis": 285.9,
+   "duz_kapanis": 285.9
+  },
+  "MEDP": {
+   "kapanis": 610.54,
+   "duz_kapanis": 610.54
+  },
+  "MGTX": {
+   "kapanis": 7.98,
+   "duz_kapanis": 7.98
+  },
+  "MGY": {
+   "kapanis": 22.85,
+   "duz_kapanis": 22.85
+  },
+  "MHD": {
+   "kapanis": 10.315,
+   "duz_kapanis": 10.315
+  },
+  "MIR": {
+   "kapanis": 16.09,
+   "duz_kapanis": 16.09
+  },
+  "MIRM": {
+   "kapanis": 96.13,
+   "duz_kapanis": 96.13
+  },
+  "MKSI": {
+   "kapanis": 184.52,
+   "duz_kapanis": 184.52
+  },
+  "MNDY": {
+   "kapanis": 72.16,
+   "duz_kapanis": 72.16
+  },
+  "MNR": {
+   "kapanis": 7.98,
+   "duz_kapanis": 7.98
+  },
+  "MNTN": {
+   "kapanis": 4.42,
+   "duz_kapanis": 4.42
+  },
+  "MQ": {
+   "kapanis": 16.24,
+   "duz_kapanis": 16.24
+  },
+  "MQY": {
+   "kapanis": 10.061,
+   "duz_kapanis": 10.061
+  },
+  "MSGE": {
+   "kapanis": 77.915,
+   "duz_kapanis": 77.915
+  },
+  "MTA": {
+   "kapanis": 5.82,
+   "duz_kapanis": 5.82
+  },
+  "MTSI": {
+   "kapanis": 194.91,
+   "duz_kapanis": 194.91
+  },
+  "MUA": {
+   "kapanis": 9.3,
+   "duz_kapanis": 9.3
+  },
+  "MUC": {
+   "kapanis": 9.51,
+   "duz_kapanis": 9.51
+  },
+  "MYN": {
+   "kapanis": 8.73,
+   "duz_kapanis": 8.73
+  },
+  "NAT": {
+   "kapanis": 6.235,
+   "duz_kapanis": 6.235
+  },
+  "NAVN": {
+   "kapanis": 24.18,
+   "duz_kapanis": 24.18
+  },
+  "NBIX": {
+   "kapanis": 150.57,
+   "duz_kapanis": 150.57
+  },
+  "NMAX": {
+   "kapanis": 6.995,
+   "duz_kapanis": 6.995
+  },
+  "NMRK": {
+   "kapanis": 9.7,
+   "duz_kapanis": 9.7
+  },
+  "NP": {
+   "kapanis": 27.62,
+   "duz_kapanis": 27.62
+  },
+  "NRIX": {
+   "kapanis": 12.85,
+   "duz_kapanis": 12.85
+  },
+  "NTRA": {
+   "kapanis": 273.4,
+   "duz_kapanis": 273.4
+  },
+  "NTSK": {
+   "kapanis": 23.93,
+   "duz_kapanis": 23.93
+  },
+  "NTST": {
+   "kapanis": 18.55,
+   "duz_kapanis": 18.55
+  },
+  "NVMI": {
+   "kapanis": 280.86,
+   "duz_kapanis": 280.86
+  },
+  "NXST": {
+   "kapanis": 196.13,
+   "duz_kapanis": 196.13
+  },
+  "OABI": {
+   "kapanis": 4.66,
+   "duz_kapanis": 4.66
+  },
+  "OGC": {
+   "kapanis": 22.43,
+   "duz_kapanis": 22.43
+  },
+  "OMDA": {
+   "kapanis": 11.87,
+   "duz_kapanis": 11.87
+  },
+  "ONON": {
+   "kapanis": 29.97,
+   "duz_kapanis": 29.97
+  },
+  "ONTO": {
+   "kapanis": 170.15,
+   "duz_kapanis": 170.15
+  },
+  "OOMA": {
+   "kapanis": 16.882,
+   "duz_kapanis": 16.882
+  },
+  "OPRA": {
+   "kapanis": 12.86,
+   "duz_kapanis": 12.86
+  },
+  "OTF": {
+   "kapanis": 8.88,
+   "duz_kapanis": 8.88
+  },
+  "PAAS": {
+   "kapanis": 30.61,
+   "duz_kapanis": 30.61
+  },
+  "PAR": {
+   "kapanis": 20.6,
+   "duz_kapanis": 20.6
+  },
+  "PAYS": {
+   "kapanis": 9.79,
+   "duz_kapanis": 9.79
+  },
+  "PCOR": {
+   "kapanis": 71.75,
+   "duz_kapanis": 71.75
+  },
+  "PCQ": {
+   "kapanis": 7.845,
+   "duz_kapanis": 7.845
+  },
+  "PEN": {
+   "kapanis": 319.16,
+   "duz_kapanis": 319.16
+  },
+  "PICS": {
+   "kapanis": 5.02,
+   "duz_kapanis": 5.02
+  },
+  "PINS": {
+   "kapanis": 16.33,
+   "duz_kapanis": 16.33
+  },
+  "PL": {
+   "kapanis": 10.525,
+   "duz_kapanis": 10.525
+  },
+  "PML": {
+   "kapanis": 6.585,
+   "duz_kapanis": 6.585
+  },
+  "PODD": {
+   "kapanis": 133.17,
+   "duz_kapanis": 133.17
+  },
+  "PPLI": {
+   "kapanis": 41.53,
+   "duz_kapanis": 41.53
+  },
+  "PR": {
+   "kapanis": 21.16,
+   "duz_kapanis": 21.16
+  },
+  "PRCH": {
+   "kapanis": 19.88,
+   "duz_kapanis": 19.88
+  },
+  "PSTL": {
+   "kapanis": 22.56,
+   "duz_kapanis": 22.56
+  },
+  "PTRN": {
+   "kapanis": 18.51,
+   "duz_kapanis": 18.51
+  },
+  "Q": {
+   "kapanis": 103.475,
+   "duz_kapanis": 103.475
+  },
+  "QQQ": {
+   "kapanis": 608.45,
+   "duz_kapanis": 608.45
+  },
+  "RBC": {
+   "kapanis": 459.285,
+   "duz_kapanis": 459.285
+  },
+  "RBRK": {
+   "kapanis": 106.78,
+   "duz_kapanis": 106.78
+  },
+  "RDDT": {
+   "kapanis": 85.31,
+   "duz_kapanis": 85.31
+  },
+  "RDN": {
+   "kapanis": 36.86,
+   "duz_kapanis": 36.86
+  },
+  "REAL": {
+   "kapanis": 10.78,
+   "duz_kapanis": 10.78
+  },
+  "RELY": {
+   "kapanis": 19.83,
+   "duz_kapanis": 19.83
+  },
+  "REPX": {
+   "kapanis": 40.85,
+   "duz_kapanis": 40.85
+  },
+  "RGLD": {
+   "kapanis": 222.03,
+   "duz_kapanis": 222.03
+  },
+  "RKT": {
+   "kapanis": 13.75,
+   "duz_kapanis": 13.75
+  },
+  "RMBS": {
+   "kapanis": 66.35,
+   "duz_kapanis": 66.35
+  },
+  "RPAY": {
+   "kapanis": 3.83,
+   "duz_kapanis": 3.83
+  },
+  "RRC": {
+   "kapanis": 48.035,
+   "duz_kapanis": 48.035
+  },
+  "RSKD": {
+   "kapanis": 9.478,
+   "duz_kapanis": 9.478
+  },
+  "RSP": {
+   "kapanis": 207.61,
+   "duz_kapanis": 207.61
+  },
+  "S": {
+   "kapanis": 22.925,
+   "duz_kapanis": 22.925
+  },
+  "SAIL": {
+   "kapanis": 21.32,
+   "duz_kapanis": 21.32
+  },
+  "SB": {
+   "kapanis": 7.4,
+   "duz_kapanis": 7.4
+  },
+  "SBRA": {
+   "kapanis": 20.39,
+   "duz_kapanis": 20.39
+  },
+  "SCZM": {
+   "kapanis": 6.16,
+   "duz_kapanis": 6.16
+  },
+  "SE": {
+   "kapanis": 62.64,
+   "duz_kapanis": 62.64
+  },
+  "SEZL": {
+   "kapanis": 137.42,
+   "duz_kapanis": 137.42
+  },
+  "SGI": {
+   "kapanis": 57.835,
+   "duz_kapanis": 57.835
+  },
+  "SHAZ": {
+   "kapanis": 16.83,
+   "duz_kapanis": 16.83
+  },
+  "SHOO": {
+   "kapanis": 39.59,
+   "duz_kapanis": 39.59
+  },
+  "SLAB": {
+   "kapanis": 220.21,
+   "duz_kapanis": 220.21
+  },
+  "SLDE": {
+   "kapanis": 26.21,
+   "duz_kapanis": 26.21
+  },
+  "SLG": {
+   "kapanis": 45.1,
+   "duz_kapanis": 45.1
+  },
+  "SM": {
+   "kapanis": 28.585,
+   "duz_kapanis": 28.585
+  },
+  "SMTC": {
+   "kapanis": 87.63,
+   "duz_kapanis": 87.63
+  },
+  "SN": {
+   "kapanis": 212.69,
+   "duz_kapanis": 212.69
+  },
+  "SNDK": {
+   "kapanis": 79.24,
+   "duz_kapanis": 79.24
+  },
+  "SPHR": {
+   "kapanis": 119.17,
+   "duz_kapanis": 119.17
+  },
+  "SPY": {
+   "kapanis": 690.43,
+   "duz_kapanis": 690.43
+  },
+  "SQM": {
+   "kapanis": 46.931,
+   "duz_kapanis": 46.931
+  },
+  "SSRM": {
+   "kapanis": 21.59,
+   "duz_kapanis": 21.59
+  },
+  "STAA": {
+   "kapanis": 24.22,
+   "duz_kapanis": 24.22
+  },
+  "STC": {
+   "kapanis": 44.5,
+   "duz_kapanis": 44.5
+  },
+  "STNG": {
+   "kapanis": 78.04,
+   "duz_kapanis": 78.04
+  },
+  "SUI": {
+   "kapanis": 114.72,
+   "duz_kapanis": 114.72
+  },
+  "SUPN": {
+   "kapanis": 28.61,
+   "duz_kapanis": 28.61
+  },
+  "TAL": {
+   "kapanis": 9.61,
+   "duz_kapanis": 9.61
+  },
+  "TARS": {
+   "kapanis": 73.01,
+   "duz_kapanis": 73.01
+  },
+  "TEAM": {
+   "kapanis": 134.65,
+   "duz_kapanis": 134.65
+  },
+  "TECK": {
+   "kapanis": 48.49,
+   "duz_kapanis": 48.49
+  },
+  "TEM": {
+   "kapanis": 54.04,
+   "duz_kapanis": 54.04
+  },
+  "TER": {
+   "kapanis": 204.775,
+   "duz_kapanis": 204.775
+  },
+  "TFX": {
+   "kapanis": 161.62,
+   "duz_kapanis": 161.62
+  },
+  "TGTX": {
+   "kapanis": 63.34,
+   "duz_kapanis": 63.34
+  },
+  "TIGO": {
+   "kapanis": 76.24,
+   "duz_kapanis": 76.24
+  },
+  "TK": {
+   "kapanis": 13.07,
+   "duz_kapanis": 13.07
+  },
+  "TKO": {
+   "kapanis": 177.98,
+   "duz_kapanis": 177.98
+  },
+  "TLN": {
+   "kapanis": 332.92,
+   "duz_kapanis": 332.92
+  },
+  "TLS": {
+   "kapanis": 7.26,
+   "duz_kapanis": 7.26
+  },
+  "TMDX": {
+   "kapanis": 85.25,
+   "duz_kapanis": 85.25
+  },
+  "TNK": {
+   "kapanis": 85.46,
+   "duz_kapanis": 85.46
+  },
+  "TPL": {
+   "kapanis": 267.71,
+   "duz_kapanis": 267.71
+  },
+  "TREE": {
+   "kapanis": 34.88,
+   "duz_kapanis": 34.88
+  },
+  "TRIN": {
+   "kapanis": 16.635,
+   "duz_kapanis": 16.635
+  },
+  "TRMD": {
+   "kapanis": 31.9,
+   "duz_kapanis": 31.9
+  },
+  "TRNO": {
+   "kapanis": 64.49,
+   "duz_kapanis": 64.49
+  },
+  "TTAN": {
+   "kapanis": 76.23,
+   "duz_kapanis": 76.23
+  },
+  "TWLO": {
+   "kapanis": 172.05,
+   "duz_kapanis": 172.05
+  },
+  "U": {
+   "kapanis": 44.75,
+   "duz_kapanis": 44.75
+  },
+  "UPST": {
+   "kapanis": 15.66,
+   "duz_kapanis": 15.66
+  },
+  "VCEL": {
+   "kapanis": 57.52,
+   "duz_kapanis": 57.52
+  },
+  "VCTR": {
+   "kapanis": 110.36,
+   "duz_kapanis": 110.36
+  },
+  "VCYT": {
+   "kapanis": 25.13,
+   "duz_kapanis": 25.13
+  },
+  "VET": {
+   "kapanis": 10.255,
+   "duz_kapanis": 10.255
+  },
+  "VIAV": {
+   "kapanis": 26.71,
+   "duz_kapanis": 26.71
+  },
+  "VICR": {
+   "kapanis": 125.09,
+   "duz_kapanis": 125.09
+  },
+  "VIST": {
+   "kapanis": 49.59,
+   "duz_kapanis": 49.59
+  },
+  "VMD": {
+   "kapanis": 8.52,
+   "duz_kapanis": 8.52
+  },
+  "VNOM": {
+   "kapanis": 39.69,
+   "duz_kapanis": 39.69
+  },
+  "VRNS": {
+   "kapanis": 49.22,
+   "duz_kapanis": 49.22
+  },
+  "VST": {
+   "kapanis": 115.2,
+   "duz_kapanis": 115.2
+  },
+  "WAY": {
+   "kapanis": 26.52,
+   "duz_kapanis": 26.52
+  },
+  "WES": {
+   "kapanis": 39.9475,
+   "duz_kapanis": 39.9475
+  },
+  "WK": {
+   "kapanis": 64.825,
+   "duz_kapanis": 64.825
+  },
+  "WSE": {
+   "kapanis": 10.85,
+   "duz_kapanis": 10.85
+  },
+  "WT": {
+   "kapanis": 18.5,
+   "duz_kapanis": 18.5
+  },
+  "WTS": {
+   "kapanis": 346.18,
+   "duz_kapanis": 346.18
+  },
+  "XERS": {
+   "kapanis": 16.97,
+   "duz_kapanis": 16.97
+  },
+  "YOU": {
+   "kapanis": 52.48,
+   "duz_kapanis": 52.48
+  },
+  "Z": {
+   "kapanis": 27.29,
+   "duz_kapanis": 27.29
+  },
+  "ZBRA": {
+   "kapanis": 301.53,
+   "duz_kapanis": 301.53
+  },
+  "ZETA": {
+   "kapanis": 29.55,
+   "duz_kapanis": 29.55
+  },
+  "ZG": {
+   "kapanis": 27.57,
+   "duz_kapanis": 27.57
+  },
+  "ZS": {
+   "kapanis": 194.82,
+   "duz_kapanis": 194.82
+  },
+  "ZVRA": {
+   "kapanis": 8.76,
+   "duz_kapanis": 8.76
+  }
+ }
+}

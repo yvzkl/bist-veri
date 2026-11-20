@@ -98,7 +98,7 @@ def bilgi(s, tekrar=2):
 
 def tarama(klasor):
     import datetime as dt
-    L = ["yfinance " + getattr(yf, "__version__", "?"), "zaman " + dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")]
+    L = ["yfinance " + getattr(yf, "__version__", "?"), "zaman " + dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")]
     ev = evren_abd(L)
     L.append("ABD evreni: %d hisse" % len(ev))
     sys.path.insert(0, os.getcwd())
@@ -192,7 +192,7 @@ def kayit_fiyatlari(semboller, gun):
     return F
 
 def derin(klasor):
-    L = ["yfinance " + getattr(yf, "__version__", "?"), "zaman " + dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")]
+    L = ["yfinance " + getattr(yf, "__version__", "?"), "zaman " + dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")]
     liste = [x.strip() for x in open("temel/derin_liste.txt") if x.strip()]
     evren = [x.strip() for x in open("temel/evren_liste.txt") if x.strip()]
     K = {"zaman": L[1][6:], "kayit_gunu": KAYIT_GUNU,
@@ -217,7 +217,7 @@ def derin(klasor):
 
 # --- izle: kayitli sepetlerin kayit gununden bugune toplam getirisi (temettu duzeltmeli, ayni seriden) ---
 def izle(klasor):
-    L = ["zaman " + dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")]
+    L = ["zaman " + dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")]
     for yol in sorted(glob.glob("temel/kayit/uzun-vade-kayit-*.json")):
         R = json.load(open(yol, encoding="utf-8"))
         kid, gun = R["kayit_id"], R["kayit_fiyati_tarihi"]
