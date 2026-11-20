@@ -9,7 +9,8 @@
 # Yalnızca KAPANMIŞ günlerin çubukları yazılır (yarım gün çubuğu dosyaya hiç girmez):
 #   BIST  : İstanbul saatiyle 18:30'dan sonra o gün kapanmış sayılır
 #   ABD   : New York saatiyle 16:30'dan sonra
-#   Kripto: UTC günü bitmiş olmalı (bugünün UTC çubuğu yazılmaz)
+#   Kripto: UTC günü bitmiş olmalı (bugünün UTC çubuğu yazılmaz); Yahoo'nun günlük çubuğu gecikirse kapanmış
+#   gün saatlik çubuklardan kurulur (20.11.2026; BIST'te zaten böyleydi; XU100 ve BTC göstergeleri için de)
 # BIST'te Yahoo'nun vermediği kapanmış gün, o günün saatlik çubuklarından kurulur ve "doldurulan;"
 # satırında listelenir. Saatlik çubuklar kapanış seansını içermediği için bu kapanışlar kesin değildir;
 # ajan sabah çalışırken son günü Google Finance ile karşılaştırıp düzeltir (gf_kontrol.py).
@@ -105,13 +106,19 @@ def gunluk(df):
     return out
 
 
-def saatlikten(df):
-    """Saatlik çubuklardan gün gün çubuk kurar: {tarih: (o, h, l, c, v)}."""
+def saatlikten(df, utc_gun=False):
+    """Saatlik çubuklardan gün gün çubuk kurar: {tarih: (o, h, l, c, v)}.
+    utc_gun=True (kripto ve BTC): gün UTC'ye göre kurulur ve yalnızca tam günler (en az 20 saatlik çubuk ve
+    23:00 UTC çubuğu var) alınır; yarım kalmış gün yazılmaz."""
     out = {}
     if df is None or df.empty:
         return out
     df = df[df["Close"] == df["Close"]]
+    if utc_gun and getattr(df.index, "tz", None) is not None:
+        df = df.tz_convert("UTC")
     for d, g in df.groupby(df.index.strftime("%Y-%m-%d")):
+        if utc_gun and (len(g) < 20 or g.index[-1].hour != 23):
+            continue
         out[d] = (g["Open"].iloc[0], g["High"].max(), g["Low"].min(),
                   g["Close"].iloc[-1], int(g["Volume"].fillna(0).sum()))
     return out
@@ -154,14 +161,19 @@ def main():
         b = blok("US_" + kod, G, K["US"]) if G else None
         (bloklar.append(b) if b else hatalar.append("US_" + kod))
 
-    # Kripto (sembol adayları)
+    # Kripto (sembol adayları): günlük + Yahoo'nun günlük çubuğu gecikirse kapanmış UTC günü saatlikten
     adaylar = sorted({s for _, L in KR for s in L})
     GD = indir(adaylar, period="1y", interval="1d")
+    SD = indir(adaylar, period="5d", interval="1h")
     for anahtar, L in KR:
         b = None
         for s in L:
             G = gunluk(GD.get(s))
             if G:
+                for d, bar in saatlikten(SD.get(s), utc_gun=True).items():
+                    if d <= K["KR"] and d not in G:
+                        G[d] = bar
+                        doldurulan.append("KR_" + anahtar + ":" + d)
                 b = blok("KR_" + anahtar, G, K["KR"])
                 if b:
                     break
@@ -190,12 +202,22 @@ MAKRO = [("XU100", "XU100.IS", "BIST"), ("SPY", "SPY", "US"), ("QQQ", "QQQ", "US
          ("USDTRY", "USDTRY=X", "KR"), ("ALTIN", "GC=F", "US"), ("BTC", "BTC-USD", "KR")]
 
 
+# Günlük çubuğu Yahoo'da gecikebilen göstergeler: kapanmış gün saatlik çubuklardan tamamlanır
+SAATLIK_MAKRO = {"XU100.IS": False, "BTC-USD": True}  # sembol: gün UTC'ye göre mi
+
+
 def makro(cikti, simdi, K):
     import os
     MD = indir([s for _, s, _ in MAKRO], period="2y", interval="1d")
-    ms, hata = [], []
+    SH = indir(list(SAATLIK_MAKRO), period="5d", interval="1h")
+    ms, hata, doldurulan = [], [], []
     for ad, s, m in MAKRO:
         G = gunluk(MD.get(s))
+        if s in SAATLIK_MAKRO and G:
+            for d, bar in saatlikten(SH.get(s), utc_gun=SAATLIK_MAKRO[s]).items():
+                if d <= K[m] and d not in G:
+                    G[d] = bar
+                    doldurulan.append(ad + ":" + d)
         gun = sorted(d for d in G if d <= K[m])
         if not gun:
             hata.append(ad)
@@ -207,8 +229,9 @@ def makro(cikti, simdi, K):
         print("MAKRO YETERSIZ, dosya yazilmadi:", ",".join(hata))
         return
     with open(yol, "w") as f:
-        f.write("\n".join(["olusturma;" + simdi.strftime("%Y-%m-%d %H:%M UTC"), "hata;" + ",".join(hata)] + ms) + "\n")
-    print("Yazildi:", yol, "| makro hata:", ",".join(hata) or "-")
+        f.write("\n".join(["olusturma;" + simdi.strftime("%Y-%m-%d %H:%M UTC"), "hata;" + ",".join(hata),
+                           "doldurulan;" + ",".join(doldurulan)] + ms) + "\n")
+    print("Yazildi:", yol, "| makro hata:", ",".join(hata) or "-", "| saatlikten doldurulan:", ",".join(doldurulan) or "-")
 
 
 if __name__ == "__main__":
