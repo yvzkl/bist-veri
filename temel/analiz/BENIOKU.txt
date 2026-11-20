@@ -7,3 +7,4 @@ Uzun vadeli aday kaydi UV-2026-11-21 nasil uretildi (yeniden uretmek icin):
    rapor_olustur.py <kayit.json> <sha256> <rapor.txt> -> okunur rapor
 Kayit dosyasi (../kayit/) degistirilmez. SHA-256: 073105b8ac71a7fa21422c16b8f889cd729f3aebffc7118ae449e5df5574f596
 Izleme: temel_tarama.py izle -> sonuc/uzun-vade-izleme-UV-2026-11-21.json (ana dalda her ayin 20'si, ABD kapanisindan sonra).
+Yeni kohortlar: Mayis ve Kasim'in 20'sinde 'kohort' modu ayni yontemle temel/kayit/uzun-vade-kayit-UV-<gun>.json (B + C, mekanik) ve sonuc/kohort-UV-<gun>/ (ham veri) yazar. A sepeti (Claude'un secimi) a_aday_listesi'nden secilip Drive Tahmin defterine '<kayit_id>-A.json' olarak kaydedilir; getirisi izleme dosyasindaki C getirilerinden hesaplanir.
