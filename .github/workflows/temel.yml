@@ -1,0 +1,30 @@
+# Yatırım Ajanı — uzun vadeli aday taraması (temel veriler, Yahoo). Elle ya da temel-tarama dalına itmeyle çalışır;
+# sonuçlar depoya yazılmaz, iş akışı çıktısı (artifact) olarak indirilir.
+name: Temel tarama
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [temel-tarama]
+    paths: ["temel/**", ".github/workflows/temel.yml"]
+
+permissions:
+  contents: read
+
+jobs:
+  tara:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install --upgrade "yfinance>=1.8,<2" pandas
+      - run: python3 temel/temel_tarama.py "$(cat temel/mod.txt)" cikti
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: temel-tarama
+          path: cikti/
+          retention-days: 30
