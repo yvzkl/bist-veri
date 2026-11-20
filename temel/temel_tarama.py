@@ -369,6 +369,44 @@ def kohort(klasor, test=False):
     if not test:
         izle(klasor)
 
+# --- evds-test: EVDS3 anahtarinin calistigini dogrular (anahtari asla yazdirmaz) ---
+def evds_cek(seriler, bas, son, anahtar):
+    import urllib.request, ssl
+    url = "https://evds3.tcmb.gov.tr/igmevdsms-dis/series=%s&startDate=%s&endDate=%s&type=json" % ("-".join(seriler), bas, son)
+    son_hata = None
+    for eski_ssl in (False, True):
+        ctx = ssl.create_default_context()
+        if eski_ssl:
+            ctx.options |= getattr(ssl, "OP_LEGACY_SERVER_CONNECT", 0x4)
+        try:
+            req = urllib.request.Request(url, headers={"key": anahtar, "User-Agent": "bist-veri/1.0"})
+            with urllib.request.urlopen(req, timeout=60, context=ctx) as r:
+                return r.status, r.read().decode("utf-8", "replace"), eski_ssl
+        except Exception as e:
+            son_hata = e
+            kod = getattr(e, "code", None)
+            if kod is not None:
+                return kod, (e.read().decode("utf-8", "replace") if hasattr(e, "read") else ""), eski_ssl
+    return None, repr(son_hata)[:300], True
+
+def evds_test(klasor):
+    anahtar = os.environ.get("EVDS_API_KEY", "").strip()
+    print("anahtar tanimli:", bool(anahtar), "| uzunluk:", len(anahtar), flush=True)
+    bugun = dt.date.today()
+    bas, son = (bugun - dt.timedelta(days=500)).strftime("%d-%m-%Y"), bugun.strftime("%d-%m-%Y")
+    for seri in ("TP.DK.USD.A.YTL", "TP.FG.J0"):
+        kod, govde, eski = evds_cek([seri], bas, son, anahtar)
+        alan = seri.replace(".", "_")
+        try:
+            J = json.loads(govde)
+            items = J.get("items", [])
+            dolu = [x for x in items if x.get(alan) not in (None, "", "null")]
+            print("%s | HTTP %s | eski SSL %s | anahtarlar %s | gozlem %d | dolu %d | son %s" % (
+                seri, kod, eski, sorted(J.keys())[:5], len(items), len(dolu),
+                [(x.get("Tarih"), x.get(alan)) for x in dolu[-3:]]), flush=True)
+        except Exception:
+            print("%s | HTTP %s | eski SSL %s | yanit JSON degil: %s" % (seri, kod, eski, govde[:200].replace(anahtar or "@@", "***")), flush=True)
+
 if __name__ == "__main__":
     mod = sys.argv[1] if len(sys.argv) > 1 else "kesif"
     klasor = sys.argv[2] if len(sys.argv) > 2 else "cikti"
@@ -384,5 +422,7 @@ if __name__ == "__main__":
         kohort(klasor)
     elif mod == "kohort-test":
         kohort(klasor, test=True)
+    elif mod == "evds-test":
+        evds_test(klasor)
     else:
         print("bilinmeyen mod", mod); sys.exit(2)
