@@ -18,7 +18,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: pip install --upgrade yfinance
+      - run: pip install --upgrade "yfinance>=1.8,<2"
       - run: mkdir -p gecmis && python3 gecmis_cek.py gecmis/gecmis-veri.txt.gz
       - name: Kaydet
         run: |
