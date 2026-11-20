@@ -1,6 +1,6 @@
 # Yatirim Ajani - uzun vadeli aday taramasi (temel veriler Yahoo'dan, yfinance ile). 21.11.2026.
-# Kullanim: python3 temel/temel_tarama.py <kesif|tarama> <cikti_klasoru>
-import sys, os, json, time, traceback
+# Kullanim: python3 temel/temel_tarama.py <kesif|tarama|derin|izle> <cikti_klasoru>
+import sys, os, json, time, traceback, collections, glob, datetime as dt
 import yfinance as yf
 
 def yaz(klasor, ad, metin):
@@ -126,6 +126,132 @@ def tarama(klasor):
     yaz(klasor, "tarama.txt", "\n".join(L) + "\n")
     print("\n".join(L))
 
+# --- derin: secilen hisselerin yillik/ceyreklik tablolari + kayit gunu kapanis fiyatlari ---
+KAYIT_GUNU = "2026-11-20"
+KIYAS = ["IWM", "RSP", "SPY", "QQQ"]
+SATIR_GELIR = ("Total Revenue", "Gross Profit", "Operating Income", "Net Income", "Research And Development",
+               "Diluted Average Shares", "Basic Average Shares")
+SATIR_NAKIT = ("Free Cash Flow", "Operating Cash Flow", "Capital Expenditure", "Stock Based Compensation",
+               "Repurchase Of Capital Stock")
+
+def _sayi(v):
+    try:
+        v = float(v)
+    except Exception:
+        return None
+    return None if v != v else v
+
+def _tablo(df, satirlar):
+    out = {}
+    if df is None or getattr(df, "empty", True):
+        return out
+    for r in satirlar:
+        if r in df.index:
+            out[r] = {str(k.date() if hasattr(k, "date") else k): _sayi(v) for k, v in df.loc[r].items()}
+    return out
+
+def _df(df):
+    if df is None or getattr(df, "empty", True):
+        return None
+    return json.loads(df.to_json(orient="split", date_format="iso", default_handler=str))
+
+def derin_bir(s):
+    t = yf.Ticker(s)
+    d = {"sembol": s}
+    isler = (("yillik_gelir", lambda: _tablo(t.income_stmt, SATIR_GELIR)),
+             ("yillik_nakit", lambda: _tablo(t.cashflow, SATIR_NAKIT)),
+             ("ceyrek_gelir", lambda: _tablo(t.quarterly_income_stmt, SATIR_GELIR)),
+             ("ceyrek_nakit", lambda: _tablo(t.quarterly_cashflow, SATIR_NAKIT)),
+             ("gelir_tahmini", lambda: _df(t.revenue_estimate)),
+             ("iceriden_alim", lambda: _df(t.insider_purchases)))
+    for ad, fn in isler:
+        for k in range(2):
+            try:
+                d[ad] = fn()
+                d.pop(ad + "_hata", None)
+                break
+            except Exception as e:
+                d[ad + "_hata"] = repr(e)[:200]
+                time.sleep(2 + 3 * k)
+    return d
+
+def _indir(semboller, bas, son=None):
+    return yf.download(semboller, start=bas, end=son, auto_adjust=False, progress=False, threads=True, group_by="column")
+
+def kayit_fiyatlari(semboller, gun):
+    g = dt.date.fromisoformat(gun)
+    df = _indir(semboller, (g - dt.timedelta(days=6)).isoformat(), (g + dt.timedelta(days=1)).isoformat())
+    F = {}
+    for s in semboller:
+        try:
+            c = df["Close"][s].dropna(); a = df["Adj Close"][s].dropna()
+            c = c[c.index.date <= g]; a = a[a.index.date <= g]
+            F[s] = {"tarih": str(c.index[-1].date()), "kapanis": round(float(c.iloc[-1]), 4), "duz_kapanis": round(float(a.iloc[-1]), 4)}
+        except Exception as e:
+            F[s] = {"hata": repr(e)[:120]}
+    return F
+
+def derin(klasor):
+    L = ["yfinance " + getattr(yf, "__version__", "?"), "zaman " + dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")]
+    liste = [x.strip() for x in open("temel/derin_liste.txt") if x.strip()]
+    evren = [x.strip() for x in open("temel/evren_liste.txt") if x.strip()]
+    K = {"zaman": L[1][6:], "kayit_gunu": KAYIT_GUNU,
+         "fiyat": kayit_fiyatlari(sorted(set(evren + liste + KIYAS)), KAYIT_GUNU), "tablo": {}}
+    for n, s in enumerate(liste):
+        K["tablo"][s] = derin_bir(s)
+        time.sleep(0.3)
+        if n % 25 == 0:
+            print("derin", n, "/", len(liste), flush=True)
+    eksik_f = [s for s, v in K["fiyat"].items() if "hata" in v]
+    eksik_t = [s for s, v in K["tablo"].items() if not v.get("yillik_gelir")]
+    L.append("fiyat alinamayan: %d %s" % (len(eksik_f), ",".join(eksik_f[:30])))
+    L.append("yillik tablo alinamayan: %d %s" % (len(eksik_t), ",".join(eksik_t[:30])))
+    L.append("fiyat tarihleri: %s" % dict(collections.Counter(v.get("tarih") for v in K["fiyat"].values())))
+    hatalar = collections.Counter(k for v in K["tablo"].values() for k in v if k.endswith("_hata"))
+    L.append("tablo hatalari: %s" % dict(hatalar))
+    os.makedirs("sonuc", exist_ok=True)
+    with open("sonuc/temel-derin.json", "w", encoding="utf-8") as f:
+        json.dump(K, f, ensure_ascii=False)
+    yaz(klasor, "derin.txt", "\n".join(L) + "\n")
+    print("\n".join(L))
+
+# --- izle: kayitli sepetlerin kayit gununden bugune toplam getirisi (temettu duzeltmeli, ayni seriden) ---
+def izle(klasor):
+    L = ["zaman " + dt.datetime.utcnow().strftime("%Y-%m-%d %H:%M UTC")]
+    for yol in sorted(glob.glob("temel/kayit/uzun-vade-kayit-*.json")):
+        R = json.load(open(yol, encoding="utf-8"))
+        kid, gun = R["kayit_id"], R["kayit_fiyati_tarihi"]
+        hedef = "sonuc/uzun-vade-izleme-%s.json" % kid
+        onceki = json.load(open(hedef, encoding="utf-8")) if os.path.exists(hedef) else {"getiri": {}}
+        semboller = sorted(set(s for v in R["sepetler"].values() for s in v) | set(R["kiyas"]))
+        df = _indir(semboller, gun)
+        G = {}
+        for s in semboller:
+            try:
+                a = df["Adj Close"][s].dropna()
+                if a.empty or str(a.index[0].date()) != gun:
+                    raise ValueError("kayit gunu verisi yok")
+                G[s] = {"getiri": round(float(a.iloc[-1] / a.iloc[0] - 1), 5), "son_tarih": str(a.index[-1].date()), "kaynak": "yahoo"}
+            except Exception as e:
+                o = onceki["getiri"].get(s)
+                G[s] = dict(o, kaynak="onceki_izleme (" + repr(e)[:60] + ")") if o else {"getiri": None, "kaynak": "yok (" + repr(e)[:60] + ")"}
+        S = {}
+        for ad, liste in R["sepetler"].items():
+            x = sorted(G[s]["getiri"] for s in liste if G[s]["getiri"] is not None)
+            if x:
+                S[ad] = {"n": len(x), "eksik": len(liste) - len(x), "esit_agirlik": round(sum(x) / len(x), 5),
+                         "medyan": round(x[len(x) // 2] if len(x) % 2 else (x[len(x) // 2 - 1] + x[len(x) // 2]) / 2, 5),
+                         "kat3_ustu": sum(1 for v in x if v >= 2.0), "yari_kayip": sum(1 for v in x if v <= -0.5)}
+        son = max((v["son_tarih"] for v in G.values() if v.get("son_tarih")), default=None)
+        Z = {"kayit_id": kid, "kayit_fiyati_tarihi": gun, "guncelleme": L[0][6:], "son_gun": son,
+             "sepet": S, "kiyas": {s: G[s]["getiri"] for s in R["kiyas"]}, "getiri": G}
+        os.makedirs("sonuc", exist_ok=True)
+        with open(hedef, "w", encoding="utf-8") as f:
+            json.dump(Z, f, ensure_ascii=False, indent=1)
+        L.append("%s son gun %s | %s | kiyas %s" % (kid, son, {k: v["esit_agirlik"] for k, v in S.items()}, Z["kiyas"]))
+    yaz(klasor, "izle.txt", "\n".join(L) + "\n")
+    print("\n".join(L))
+
 if __name__ == "__main__":
     mod = sys.argv[1] if len(sys.argv) > 1 else "kesif"
     klasor = sys.argv[2] if len(sys.argv) > 2 else "cikti"
@@ -133,5 +259,9 @@ if __name__ == "__main__":
         kesif(klasor)
     elif mod == "tarama":
         tarama(klasor)
+    elif mod == "derin":
+        derin(klasor)
+    elif mod == "izle":
+        izle(klasor)
     else:
         print("bilinmeyen mod", mod); sys.exit(2)
