@@ -216,6 +216,18 @@ def derin(klasor):
     print("\n".join(L))
 
 # --- izle: kayitli sepetlerin kayit gununden bugune toplam getirisi (temettu duzeltmeli, ayni seriden) ---
+def _seri(df, s):
+    try:
+        a = df["Adj Close"]
+        if hasattr(a, "columns"):
+            a = a[s] if s in a.columns else a.iloc[:, 0]
+        return a.dropna()
+    except Exception:
+        return None
+
+def _gecerli(a, gun):
+    return a is not None and not a.empty and str(a.index[0].date()) == gun
+
 def izle(klasor):
     L = ["zaman " + dt.datetime.now(dt.timezone.utc).strftime("%Y-%m-%d %H:%M UTC")]
     for yol in sorted(glob.glob("temel/kayit/uzun-vade-kayit-*.json")):
@@ -225,11 +237,22 @@ def izle(klasor):
         onceki = json.load(open(hedef, encoding="utf-8")) if os.path.exists(hedef) else {"getiri": {}}
         semboller = sorted(set(s for v in R["sepetler"].values() for s in v) | set(R["kiyas"]))
         df = _indir(semboller, gun)
+        seriler = {s: _seri(df, s) for s in semboller}
+        for s in [s for s in semboller if not _gecerli(seriler[s], gun)]:
+            for k in range(2):  # toplu indirmede gecici hata (or. onbellek kilidi): tek tek, iplik olmadan yeniden dene
+                try:
+                    a = _seri(yf.download(s, start=gun, auto_adjust=False, progress=False, threads=False), s)
+                except Exception:
+                    a = None
+                if _gecerli(a, gun):
+                    seriler[s] = a
+                    break
+                time.sleep(2 + 2 * k)
         G = {}
         for s in semboller:
             try:
-                a = df["Adj Close"][s].dropna()
-                if a.empty or str(a.index[0].date()) != gun:
+                a = seriler[s]
+                if not _gecerli(a, gun):
                     raise ValueError("kayit gunu verisi yok")
                 G[s] = {"getiri": round(float(a.iloc[-1] / a.iloc[0] - 1), 5), "son_tarih": str(a.index[-1].date()), "kaynak": "yahoo"}
             except Exception as e:
