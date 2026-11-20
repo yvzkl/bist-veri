@@ -1,7 +1,7 @@
 {
  "kayit_id": "UV-2026-11-21",
  "kayit_fiyati_tarihi": "2026-11-20",
- "guncelleme": "2026-11-20 21:32 UTC",
+ "guncelleme": "2026-11-20 21:33 UTC",
  "son_gun": "2026-11-20",
  "sepet": {
   "A_claude": {
@@ -254,7 +254,7 @@
   "BILL": {
    "getiri": 0.0,
    "son_tarih": "2026-11-20",
-   "kaynak": "onceki_izleme (ValueError('kayit gunu verisi yok'))"
+   "kaynak": "yahoo"
   },
   "BLLN": {
    "getiri": 0.0,
